@@ -7,6 +7,10 @@ public class FireController : MonoBehaviour {
 	private float curTime;
 	private int frequency;
 	private Vector3 originalScale;
+	private Quaternion originalRot;
+	private Vector3 originalPos;
+	private Quaternion newRot;
+	private Vector3 newPos;
 
 	public float fireTime;
 	public float scaleRate;
@@ -14,6 +18,8 @@ public class FireController : MonoBehaviour {
 
 	void Start() {
 		originalScale = gameObject.transform.localScale;
+		originalRot = gameObject.transform.localRotation;
+		originalPos = gameObject.transform.localPosition;
 		frequency = 0;
 	}
 
@@ -24,19 +30,22 @@ public class FireController : MonoBehaviour {
 	}
 
 	void Update() {
+
 		// activate the firing process if the mouse button is pressed
 		if (Input.GetMouseButtonDown(0) && !isFiring) {
+			newRot = gameObject.transform.rotation;
+			newPos = gameObject.transform.position;
 			isFiring = true;
 			curTime = 0.0f;
 		}
 
-		if (Input.GetKeyDown("[")) {
+		if (Input.GetKeyDown("[") || Input.mouseScrollDelta.y < 0) {
 			frequency--;
 			if (frequency < 0)
 				frequency = 0;
 			Debug.Log ("frequency: " + frequency.ToString());
 		}
-		else if (Input.GetKeyDown("]")) {
+		else if (Input.GetKeyDown("]") || Input.mouseScrollDelta.y > 0) {
 			frequency++;
 			if (frequency > 3)
 				frequency = 3;
@@ -48,6 +57,9 @@ public class FireController : MonoBehaviour {
 		if (isFiring) {
 			// render the cone
 			gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+			gameObject.transform.rotation = newRot;
+			gameObject.transform.position = newPos;
 
 			Vector3 scale = gameObject.transform.localScale;
 			// scale the cone over time according to the scale rate
@@ -62,6 +74,8 @@ public class FireController : MonoBehaviour {
 		else {
 			gameObject.GetComponent<MeshRenderer>().enabled = false;
 			gameObject.transform.localScale = originalScale;
+			gameObject.transform.localRotation = originalRot;
+			gameObject.transform.localPosition = originalPos;
 		}
 	}
 }
