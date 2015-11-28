@@ -31,8 +31,8 @@ GameObject:
   - 23: {fileID: 2340570}
   - 54: {fileID: 5413982}
   m_Layer: 0
-  m_Name: ItemContainer
-  m_TagString: ItemCapsule/Caps2
+  m_Name: Item2Container
+  m_TagString: ItemCapsule/Caps1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.50360966, y: 1.32599998, z: 15.1667824}
+  m_LocalPosition: {x: -2.50360966, y: 1.32599998, z: 14.1719999}
   m_LocalScale: {x: .194424599, y: .194424599, z: .194424599}
   m_Children:
   - {fileID: 487130}
@@ -72,7 +72,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0ea2cd7dc1577e640909df86696d6d4b, type: 2}
+  - {fileID: 2100000, guid: d03b1f2005b314ba4b3d59ac0cbe5d15, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -182,6 +182,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: ItemCapsule/Caps2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d03b1f2005b314ba4b3d59ac0cbe5d15, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: Item2Container
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: BlueGlass
+  m_Name: RedGlass
   m_Shader: {fileID: 4800000, guid: b1c7b1812ac10a745958c4c7ceadfcba, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -53,7 +53,7 @@ Material:
       data:
         first:
           name: _Emission
-        second: {r: .104617201, g: .250119328, b: .948529422, a: 0}
+        second: {r: 1, g: 0, b: 0, a: 0}
       data:
         first:
           name: _ReflectColor

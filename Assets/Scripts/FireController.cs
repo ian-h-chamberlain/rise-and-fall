@@ -6,14 +6,15 @@ public class FireController : MonoBehaviour {
 	private bool isFiring;
 	private float curTime;
 	private int frequency;
+	private Vector3 originalScale;
 
 	public float fireTime;
 	public float scaleRate;
-	private Vector3 originalScale;
+	public Material[] materials;
 
 	void Start() {
 		originalScale = gameObject.transform.localScale;
-		frequency = 2;
+		frequency = 0;
 	}
 
 	void OnTriggerStay (Collider other) {
@@ -31,12 +32,18 @@ public class FireController : MonoBehaviour {
 
 		if (Input.GetKeyDown("[")) {
 			frequency--;
+			if (frequency < 0)
+				frequency = 0;
 			Debug.Log ("frequency: " + frequency.ToString());
 		}
 		else if (Input.GetKeyDown("]")) {
 			frequency++;
+			if (frequency > 3)
+				frequency = 3;
 			Debug.Log ("frequency: " + frequency.ToString());
 		}
+
+		gameObject.GetComponent<Renderer>().material = materials[frequency];
 
 		if (isFiring) {
 			// render the cone
