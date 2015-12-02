@@ -3,79 +3,20 @@ using System.Collections;
 
 public class FireController : MonoBehaviour {
 
-	private bool isFiring;
-	private float curTime;
-	private int frequency;
-	private Vector3 originalScale;
-	private Quaternion originalRot;
-	private Vector3 originalPos;
-	private Quaternion newRot;
-	private Vector3 newPos;
-
-	public float fireTime;
-	public float scaleRate;
-	public Material[] materials;
+	public int frequency;
+	public int instrument;
 
 	void Start() {
-		originalScale = gameObject.transform.localScale;
-		originalRot = gameObject.transform.localRotation;
-		originalPos = gameObject.transform.localPosition;
-		frequency = 0;
+		gameObject.GetComponent<ColorByFrequency>().frequency = frequency;
 	}
 
 	void OnTriggerStay (Collider other) {
-		if (isFiring && other.gameObject.CompareTag("ItemCapsule/Caps" + frequency.ToString())) {
-			Destroy(other.gameObject);
-		}
-	}
-
-	void Update() {
-
-		// activate the firing process if the mouse button is pressed
-		if (Input.GetMouseButtonDown(0) && !isFiring) {
-			newRot = gameObject.transform.rotation;
-			newPos = gameObject.transform.position;
-			isFiring = true;
-			curTime = 0.0f;
-		}
-
-		if (Input.GetKeyDown("[") || Input.mouseScrollDelta.y < 0) {
-			frequency--;
-			if (frequency < 0)
-				frequency = 0;
-			Debug.Log ("frequency: " + frequency.ToString());
-		}
-		else if (Input.GetKeyDown("]") || Input.mouseScrollDelta.y > 0) {
-			frequency++;
-			if (frequency > 3)
-				frequency = 3;
-			Debug.Log ("frequency: " + frequency.ToString());
-		}
-
-		gameObject.GetComponent<Renderer>().material = materials[frequency];
-
-		if (isFiring) {
-			// render the cone
-			gameObject.GetComponent<MeshRenderer>().enabled = true;
-
-			gameObject.transform.rotation = newRot;
-			gameObject.transform.position = newPos;
-
-			Vector3 scale = gameObject.transform.localScale;
-			// scale the cone over time according to the scale rate
-			gameObject.transform.localScale = new Vector3(scale.x * scaleRate, scale.y * scaleRate, scale.z * scaleRate);
-
-			// add to the timer and check whether or not we should be done firing
-			curTime += Time.deltaTime;
-			if (curTime >= fireTime) {
-				isFiring = false;
+		if (other.gameObject.CompareTag("ItemCapsule") && other.gameObject.GetComponent<ColorByFrequency>().frequency == frequency) {
+			if (other.gameObject.GetComponent<Instrument>() == null)
+				Destroy(other.gameObject);
+			else if (instrument == other.gameObject.GetComponent<Instrument>().type && other.gameObject.GetComponent<ColorByFrequency>().frequency == frequency) {
+				Destroy(other.gameObject);
 			}
-		}
-		else {
-			gameObject.GetComponent<MeshRenderer>().enabled = false;
-			gameObject.transform.localScale = originalScale;
-			gameObject.transform.localRotation = originalRot;
-			gameObject.transform.localPosition = originalPos;
 		}
 	}
 }

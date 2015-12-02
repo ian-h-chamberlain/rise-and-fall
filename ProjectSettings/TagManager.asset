@@ -5,12 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - SightCone
-  - ItemCapsule/Caps0
   - Item
-  - ItemCapsule/Caps1
-  - ItemCapsule/Caps2
-  - ItemCapsule/Caps3
   - ItemCapsule
+  - Instrument
   layers:
   - Default
   - TransparentFX

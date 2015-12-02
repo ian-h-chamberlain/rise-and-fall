@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 28e2596b703cd415794271eb1385d1c0
-timeCreated: 1448665792
+guid: eb098e27092184a37bf3d388f72c0169
+timeCreated: 1449092229
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,11 +9,10 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCone1
+    4300000: pSphere1
     6400000: //RootNode
-    9500000: //RootNode
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -55,7 +54,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 1
     tangentImportMode: 1
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
