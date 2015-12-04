@@ -7,14 +7,14 @@ public class FireController : MonoBehaviour {
 	public int instrument;
 
 	void Start() {
-		gameObject.GetComponent<ColorByFrequency>().frequency = frequency;
+		gameObject.GetComponent<Frequency>().instrument = instrument;
 	}
 
 	void OnTriggerStay (Collider other) {
-		if (other.gameObject.CompareTag("ItemCapsule") && other.gameObject.GetComponent<ColorByFrequency>().frequency == frequency) {
+		if (other.gameObject.CompareTag("ItemCapsule") && other.gameObject.GetComponent<Frequency>().frequency == frequency) {
 			if (other.gameObject.GetComponent<Instrument>() == null)
 				Destroy(other.gameObject);
-			else if (instrument == other.gameObject.GetComponent<Instrument>().type && other.gameObject.GetComponent<ColorByFrequency>().frequency == frequency) {
+			else if (instrument == other.gameObject.GetComponent<Instrument>().type && other.gameObject.GetComponent<Frequency>().frequency == frequency) {
 				Destroy(other.gameObject);
 			}
 		}

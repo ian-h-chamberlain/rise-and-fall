@@ -22,11 +22,11 @@ public class ScoreController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag("Item")) {
+		if (FindParentWithTag(other.gameObject, "Item") != null) {
 			score++;
 			Destroy (other.gameObject);
 		}
-		else if (other.gameObject.CompareTag("Instrument")) {
+		else if (FindParentWithTag(other.gameObject, "Instrument")) {
 			instrument = other.gameObject.GetComponent<Instrument>().type;
 			Destroy (other.gameObject);
 		}
@@ -80,5 +80,19 @@ public class ScoreController : MonoBehaviour {
 			Destroy(soundCone);
 			soundCone = soundConePrefab;
 		}
+	}
+
+	public static GameObject FindParentWithTag(GameObject childObject, string tag)
+	{
+		Transform t = childObject.transform;
+		while (t.parent != null)
+		{
+			if (t.parent.tag == tag)
+			{
+				return t.parent.gameObject;
+			}
+			t = t.parent.transform;
+		}
+		return null; // Could not find a parent with given tag.
 	}
 }
