@@ -23,6 +23,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 463674}
+  - 114: {fileID: 11427682}
   m_Layer: 0
   m_Name: EighthNote
   m_TagString: Untagged
@@ -324,6 +325,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .264287144, y: .55410552, z: .194985569}
   m_Center: {x: -.036424607, y: .203593746, z: 3.7252903e-09}
+--- !u!114 &11427682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0a4c008dd8940a0b075af48a12608f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11468700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instrument: 0
-  frequency: 3
+  frequency: 2
 --- !u!136 &13697862
 CapsuleCollider:
   m_ObjectHideFlags: 1
