@@ -19,6 +19,7 @@ public class ScoreController : MonoBehaviour {
 	private bool isFiring = false;
 
 	private int currentInst = 0;
+	private int lastInst = 0;
 	private List<int> instruments;
 
 	void Start() {
@@ -70,17 +71,23 @@ public class ScoreController : MonoBehaviour {
 			Debug.Log ("frequency: " + frequency.ToString());
 		}
 
+		// allow the player to switch instruments
 		if (Input.GetKeyDown ("1")) {
+			lastInst = currentInst;
 			currentInst = 0;
-		} 
-		else if (Input.GetKeyDown ("2") && instruments.Count >= 2) {
+		} else if (Input.GetKeyDown ("2") && instruments.Count >= 2) {
+			lastInst = currentInst;
 			currentInst = 1;
-		}
-		else if (Input.GetKeyDown ("3") && instruments.Count >= 3) {
+		} else if (Input.GetKeyDown ("3") && instruments.Count >= 3) {
+			lastInst = currentInst;
 			currentInst = 2;
-		}
-		else if (Input.GetKeyDown ("4") && instruments.Count >= 4) {
+		} else if (Input.GetKeyDown ("4") && instruments.Count >= 4) {
+			lastInst = currentInst;
 			currentInst = 3;
+		} else if (Input.GetKeyDown ("q")) {
+			int tmp = currentInst;
+			currentInst = lastInst;
+			lastInst = tmp;
 		}
 
 		if (isFiring) {
