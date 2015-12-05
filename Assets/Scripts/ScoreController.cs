@@ -11,8 +11,8 @@ public class ScoreController : MonoBehaviour {
 	public int notesNeeded;
 	private int completion = 0;
 
-	public GameObject soundCone;
-	private GameObject soundConePrefab;
+	private GameObject soundCone;
+	public GameObject soundConePrefab;
 
 	private float frequency = 130.0f;
 	private float curTime;
@@ -23,7 +23,6 @@ public class ScoreController : MonoBehaviour {
 	private List<int> instruments;
 
 	void Start() {
-		soundConePrefab = soundCone;
 		instruments = new List<int>();
 		instruments.Add (0);
 	}
@@ -47,8 +46,8 @@ public class ScoreController : MonoBehaviour {
 		// activate the firing process if the mouse button is pressed
 		if (Input.GetMouseButtonDown(0) && !isFiring) {
 			foreach (Transform child in transform) { 
-				if (child.gameObject.CompareTag("SightCone")) {
-					soundCone = Instantiate(soundCone, child.transform.position, child.transform.rotation) as GameObject;
+				if (child.gameObject.CompareTag("SoundCone")) {
+					soundCone = Instantiate(soundConePrefab, child.transform.position, child.transform.rotation) as GameObject;
 					soundCone.transform.localScale = child.localScale;
 					soundCone.GetComponent<FireController>().freq.frequency = frequency;
 					soundCone.GetComponent<FireController>().freq.instrument = instruments[currentInst];
@@ -106,9 +105,9 @@ public class ScoreController : MonoBehaviour {
 				isFiring = false;
 			}
 		}
-		else if (!soundCone.Equals(soundConePrefab)) {
+		if (!isFiring && soundCone != null) {
 			Destroy(soundCone);
-			soundCone = soundConePrefab;
+			soundCone = null;
 		}
 	}
 

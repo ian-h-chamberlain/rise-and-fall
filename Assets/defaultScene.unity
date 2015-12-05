@@ -158,7 +158,7 @@ MonoBehaviour:
   scaleRate: 1.10000002
   moveRate: .25
   notesNeeded: 7
-  soundCone: {fileID: 123512, guid: d2c81a4fa407d4ac59e34b4074d141f0, type: 2}
+  soundConePrefab: {fileID: 123512, guid: d2c81a4fa407d4ac59e34b4074d141f0, type: 2}
 --- !u!1001 &313388722
 Prefab:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ GameObject:
   - 4: {fileID: 442556144}
   m_Layer: 0
   m_Name: SoundConeSpawn
-  m_TagString: SightCone
+  m_TagString: SoundCone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
