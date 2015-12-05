@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instrument: 0
-  frequency: 0
+  frequency: 130
 --- !u!114 &11482990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,6 +245,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: note.duration
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

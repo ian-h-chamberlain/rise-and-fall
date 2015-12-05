@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instrument: 1
-  frequency: 0
+  frequency: 130
 --- !u!136 &13697862
 CapsuleCollider:
   m_ObjectHideFlags: 1

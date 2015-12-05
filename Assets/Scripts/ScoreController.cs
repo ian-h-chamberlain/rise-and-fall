@@ -50,8 +50,8 @@ public class ScoreController : MonoBehaviour {
 				if (child.gameObject.CompareTag("SightCone")) {
 					soundCone = Instantiate(soundCone, child.transform.position, child.transform.rotation) as GameObject;
 					soundCone.transform.localScale = child.localScale;
-					soundCone.GetComponent<FireController>().frequency = frequency;
-					soundCone.GetComponent<FireController>().instrument = instruments[currentInst];
+					soundCone.GetComponent<FireController>().freq.frequency = frequency;
+					soundCone.GetComponent<FireController>().freq.instrument = instruments[currentInst];
 					isFiring = true;
 					curTime = 0.0f;
 				}
