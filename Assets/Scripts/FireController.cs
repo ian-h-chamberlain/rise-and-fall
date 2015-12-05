@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FireController : MonoBehaviour {
 
-	public int frequency;
+	public float frequency;
 	public int instrument;
 
 	void Start() {
@@ -11,12 +11,10 @@ public class FireController : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider other) {
-		if (other.gameObject.CompareTag("ItemCapsule") && other.gameObject.GetComponent<Frequency>().frequency == frequency) {
-			if (other.gameObject.GetComponent<Instrument>() == null)
-				Destroy(other.gameObject);
-			else if (instrument == other.gameObject.GetComponent<Instrument>().type && other.gameObject.GetComponent<Frequency>().frequency == frequency) {
-				Destroy(other.gameObject);
-			}
+		if (other.gameObject.CompareTag("ItemCapsule")
+		    	&& Mathf.Abs(other.gameObject.GetComponentInParent<Frequency>().frequency - frequency) < 5.0f
+		    	&& other.gameObject.GetComponentInParent<Frequency>().instrument == instrument) {
+			Destroy(other.gameObject);
 		}
 	}
 }

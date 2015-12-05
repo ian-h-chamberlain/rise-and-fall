@@ -1,33 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ScoreController : MonoBehaviour {
-
-	public int score = 0;
-	public int instrument = 0;
 
 	public float fireTime;
 	public float scaleRate;
 	public float moveRate;
 
+	public int notesNeeded;
+	private int completion = 0;
+
 	public GameObject soundCone;
 	private GameObject soundConePrefab;
 
-	private int frequency;
+	private float frequency = 130.0f;
 	private float curTime;
 	private bool isFiring = false;
 
+	private int currentInst = 0;
+	private List<int> instruments;
+
 	void Start() {
 		soundConePrefab = soundCone;
+		instruments = new List<int>();
+		instruments.Add (0);
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (FindParentWithTag(other.gameObject, "Item") != null) {
-			score++;
-			Destroy (other.gameObject);
+		GameObject o = FindParentWithTag (other.gameObject, "Item");
+		if (o != null) {
+			completion++;
+			Debug.Log ("completion: " + completion.ToString() + "/" + notesNeeded.ToString());
+			Destroy (o);
 		}
-		else if (FindParentWithTag(other.gameObject, "Instrument")) {
-			instrument = other.gameObject.GetComponent<Instrument>().type;
+		o = FindParentWithTag (other.gameObject, "Instrument");
+		if (o != null) {
+			instruments.Add(other.gameObject.GetComponentInParent<Instrument>().type);
+			currentInst = instruments.Count - 1;
 			Destroy (other.gameObject);
 		}
 	}
@@ -40,7 +50,7 @@ public class ScoreController : MonoBehaviour {
 					soundCone = Instantiate(soundCone, child.transform.position, child.transform.rotation) as GameObject;
 					soundCone.transform.localScale = child.localScale;
 					soundCone.GetComponent<FireController>().frequency = frequency;
-					soundCone.GetComponent<FireController>().instrument = instrument;
+					soundCone.GetComponent<FireController>().instrument = instruments[currentInst];
 					isFiring = true;
 					curTime = 0.0f;
 				}
@@ -48,16 +58,29 @@ public class ScoreController : MonoBehaviour {
 		}
 		
 		if (Input.GetKeyDown("[") || Input.mouseScrollDelta.y < 0) {
-			frequency--;
-			if (frequency < 0)
-				frequency = 0;
+			frequency -= 5.0f;
+			if (frequency < 130.0f)
+				frequency = 130.0f;
 			Debug.Log ("frequency: " + frequency.ToString());
 		}
 		else if (Input.GetKeyDown("]") || Input.mouseScrollDelta.y > 0) {
-			frequency++;
-			if (frequency > 3)
-				frequency = 3;
+			frequency += 5.0f;
+			if (frequency > 987.0f)
+				frequency = 987.0f;
 			Debug.Log ("frequency: " + frequency.ToString());
+		}
+
+		if (Input.GetKeyDown ("1")) {
+			currentInst = 0;
+		} 
+		else if (Input.GetKeyDown ("2") && instruments.Count >= 2) {
+			currentInst = 1;
+		}
+		else if (Input.GetKeyDown ("3") && instruments.Count >= 3) {
+			currentInst = 2;
+		}
+		else if (Input.GetKeyDown ("4") && instruments.Count >= 4) {
+			currentInst = 3;
 		}
 
 		if (isFiring) {
