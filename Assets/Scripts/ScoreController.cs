@@ -14,13 +14,13 @@ public class ScoreController : MonoBehaviour {
 	private GameObject soundCone;
 	public GameObject soundConePrefab;
 
-	private float frequency = 130.0f;
 	private float curTime;
 	private bool isFiring = false;
 
 	private int currentInst = 0;
 	private int lastInst = 0;
 	private List<int> instruments;
+	public List<Instrument> soundInstruments;
 
 	void Start() {
 		instruments = new List<int>();
@@ -36,7 +36,7 @@ public class ScoreController : MonoBehaviour {
 		}
 		o = FindParentWithTag (other.gameObject, "Instrument");
 		if (o != null) {
-			instruments.Add(other.gameObject.GetComponentInParent<Instrument>().type);
+			instruments.Add(other.gameObject.GetComponentInParent<InstContainer>().inst.type);
 			currentInst = instruments.Count - 1;
 			Destroy (other.gameObject);
 		}
@@ -49,44 +49,28 @@ public class ScoreController : MonoBehaviour {
 				if (child.gameObject.CompareTag("SoundCone")) {
 					soundCone = Instantiate(soundConePrefab, child.transform.position, child.transform.rotation) as GameObject;
 					soundCone.transform.localScale = child.localScale;
-					soundCone.GetComponent<FireController>().freq.frequency = frequency;
 					soundCone.GetComponent<FireController>().freq.instrument = instruments[currentInst];
+					soundCone.GetComponent<FireController>().freq.soundInstrument = Camera.main.GetComponent<SoundController>().current_sound;
 					isFiring = true;
 					curTime = 0.0f;
 				}
 			}
 		}
-		
-		if (Input.GetKeyDown("[") || Input.mouseScrollDelta.y < 0) {
-			frequency -= 5.0f;
-			if (frequency < 130.0f)
-				frequency = 130.0f;
-			Debug.Log ("frequency: " + frequency.ToString());
-		}
-		else if (Input.GetKeyDown("]") || Input.mouseScrollDelta.y > 0) {
-			frequency += 5.0f;
-			if (frequency > 987.0f)
-				frequency = 987.0f;
-			Debug.Log ("frequency: " + frequency.ToString());
-		}
-
+	
 		// allow the player to switch instruments
 		if (Input.GetKeyDown ("1")) {
 			lastInst = currentInst;
 			currentInst = 0;
+			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[0]);
 		} else if (Input.GetKeyDown ("2") && instruments.Count >= 2) {
 			lastInst = currentInst;
 			currentInst = 1;
-		} else if (Input.GetKeyDown ("3") && instruments.Count >= 3) {
-			lastInst = currentInst;
-			currentInst = 2;
-		} else if (Input.GetKeyDown ("4") && instruments.Count >= 4) {
-			lastInst = currentInst;
-			currentInst = 3;
+			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[1]);
 		} else if (Input.GetKeyDown ("q")) {
 			int tmp = currentInst;
 			currentInst = lastInst;
 			lastInst = tmp;
+			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[currentInst]);
 		}
 
 		if (isFiring) {

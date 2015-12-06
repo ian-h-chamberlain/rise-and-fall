@@ -4,12 +4,16 @@ using System.Collections;
 public class FireController : MonoBehaviour {
 
 	public Frequency freq;
-	
+
 	void OnTriggerStay (Collider other) {
+		Destructability d = other.gameObject.GetComponentInParent<Destructability> ();
+
 		if (other.gameObject.CompareTag("ItemCapsule")
-		    	&& Mathf.Abs(other.gameObject.GetComponentInParent<Frequency>().frequency - freq.frequency) < 5.0f
-		    	&& other.gameObject.GetComponentInParent<Frequency>().instrument == freq.instrument) {
-			Destroy(other.gameObject);
+		    	&& d != null
+		    	&& Mathf.Abs(d.myTargetPitch - Camera.main.GetComponent<SoundController>().sound.pitch) < d.epsilon
+		    	&& d.instrument == Camera.main.GetComponent<SoundController>().current_sound) {
+
+			other.gameObject.GetComponent<Destructability>().DestructionSequence();
 		}
 	}
 }

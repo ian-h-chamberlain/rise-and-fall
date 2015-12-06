@@ -6,7 +6,7 @@ public class Jitter : MonoBehaviour {
 	float saved_y;
 	float saved_z;
 	bool do_jitter= false;
-	int t;
+	int t = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -19,14 +19,23 @@ public class Jitter : MonoBehaviour {
 	void Update () {
 		if (do_jitter) {
 			jitter ();
+		} else {
+			transform.position = new Vector3 (saved_x, saved_y, saved_z);
 		}
 	}
 
 	public void jitter(){
-		transform.position = Random.insideUnitSphere * .07f;
+		Debug.Log ("jittering");
+		transform.position = new Vector3(saved_x, saved_y, saved_z) + Random.insideUnitSphere * .03f;
 		//prevent wandering
-		if (Time.time % 100 == 0)
-			transform.position = new Vector3 (saved_x, saved_y, saved_z);
+	}
+
+	public void startJitter() {
+		do_jitter = true;
+	}
+
+	public void stopJitter() {
+		do_jitter = false;
 	}
 
 	public void jitterFor(int x){

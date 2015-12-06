@@ -3,32 +3,16 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class SoundController : MonoBehaviour {
-	//hardcode instrument-specific 
-	//values here:
-	public float Instr1MaxPitch= 1.909999f;
-	public float Instr1MinPitch= 0.9450001f;
-	public float Instr1Epsilon = 0.05f;
-	public Color Instr1Color = Color.blue;
-
-	public float Instr2MaxPitch= 1.04f;
-	public float Instr2MinPitch= 0.725f;
-	public float Instr2Epsilon = 0.02f;
-	public Color Instr2Color = Color.red;
-	//-----------------------
-
 
 	public AudioSource sound;
-	public AudioClip instrument1;
-	public AudioClip instrument2;
-	AudioClip current_sound;
+	public AudioClip current_sound;
 	public Image marker;
 	public Image sliderback;
 	bool markerUp = true;
 	int waiting_to_switch_dir = 0;
-	
-	public float maxPitch = 1.909999f;
-	public float minPitch = 0.9450001f;
-	public float epsilon = 0.05f;
+
+	public Instrument current_inst;
+
 	float targetPitch;
 	
 	bool destroySequence = false;
@@ -48,18 +32,17 @@ public class SoundController : MonoBehaviour {
 	void Start () {
 		sound = GetComponent<AudioSource> ();
 		sound.pitch = 1;
-		current_sound = instrument1;
+		current_sound = current_inst.sound;
 
-		choosePitchRange ();
 		setPitchRelatedVars ();
-		sliderback.color= Instr1Color;
+		sliderback.color= current_inst.col;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		checkForInstrumentSwitch ();
+		// checkForInstrumentSwitch ();
 
 		if (Input.GetMouseButtonDown(1))
 			PitchSwitch ();
@@ -79,48 +62,39 @@ public class SoundController : MonoBehaviour {
 
 	}
 
-	void checkForInstrumentSwitch(){
-		if (Input.GetKeyDown(KeyCode.Alpha1)){
-			print("Instrument 1 selected");
-			current_sound = instrument1;
-			setPitchRelatedVars();
-			sliderback.color= Instr1Color;
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha2)){
-			print("Instrument 2 selected");
-			current_sound = instrument2;
-			choosePitchRange ();
-			setPitchRelatedVars();
-			sliderback.color = Instr2Color;
-		}
+	public void switchInstrument(Instrument inst) {
+		print("Instrument " + inst.type.ToString() + " selected");
+		current_inst = inst;
+		current_sound = inst.sound;
+		setPitchRelatedVars();
+		sliderback.color = inst.col;
 	}
 
 	void setPitchRelatedVars(){
-		choosePitchRange ();
-		marker.GetComponent<MarkerBehavior>().instrumentMax = maxPitch;
-		marker.GetComponent<MarkerBehavior>().instrumentMin = minPitch;
+		marker.GetComponent<MarkerBehavior>().instrumentMax = current_inst.maxPitch;
+		marker.GetComponent<MarkerBehavior>().instrumentMin = current_inst.minPitch;
 	}
 
 	void moveMarker(){
-		if (markerUp && sound.pitch < maxPitch) {//for example
+		if (markerUp && sound.pitch < current_inst.maxPitch) {//for example
 			sound.pitch = Mathf.Lerp (sound.pitch, sound.pitch + 0.1f, 0.05f);
 			marker.GetComponent<MarkerBehavior>().moveUp();
-		} else if ( !markerUp && sound.pitch > minPitch) {//for example
+		} else if ( !markerUp && sound.pitch > current_inst.minPitch) {//for example
 			sound.pitch = Mathf.Lerp (sound.pitch, sound.pitch - 0.1f, 0.05f);
 			marker.GetComponent<MarkerBehavior>().moveDown();
 		}
 		//quick checks
-		if (sound.pitch > maxPitch)
-			sound.pitch = maxPitch;
-		else if (sound.pitch < minPitch) {
-			sound.pitch = minPitch;
+		if (sound.pitch > current_inst.maxPitch)
+			sound.pitch = current_inst.maxPitch;
+		else if (sound.pitch < current_inst.minPitch) {
+			sound.pitch = current_inst.minPitch;
 		}
 		
 		checkToReverse ();
 	}
 	
 	void checkToReverse(){
-		if ( ( sound.pitch==maxPitch || sound.pitch==minPitch) && waiting_to_switch_dir == 0) {
+		if ( ( sound.pitch==current_inst.maxPitch || sound.pitch==current_inst.minPitch) && waiting_to_switch_dir == 0) {
 			waiting_to_switch_dir = WAIT_TIME;
 		}
 		if (waiting_to_switch_dir == 1) {
@@ -133,7 +107,7 @@ public class SoundController : MonoBehaviour {
 	}
 	
 	void checkForTarget(){
-		if (Mathf.Abs (sound.pitch - targetPitch)<epsilon) {
+		if (Mathf.Abs (sound.pitch - targetPitch)<current_inst.epsilon) {
 			GetComponent<Jitter>().jitter ();
 			if (Input.GetKeyDown(KeyCode.Space))
 				destroySequence = true;
@@ -141,7 +115,7 @@ public class SoundController : MonoBehaviour {
 	}
 
 	void PitchSwitch(){
-		print ("it's pitch switch time!");
+		// print ("it's pitch switch time!");
 
 		if (!sliderActive) {
 			sliderActive = true;
@@ -166,21 +140,6 @@ public class SoundController : MonoBehaviour {
 		if (!sliderActive) sound.Pause ();
 		sound.volume = 1;
 
-	}
-
-	void choosePitchRange(){
-		if (current_sound == instrument1) {
-			//flute
-			maxPitch = Instr1MaxPitch;
-			minPitch = Instr1MinPitch;
-			epsilon = Instr1Epsilon;
-		} 
-		else if (current_sound == instrument2) {
-			//yodel
-			minPitch = Instr2MinPitch;
-			maxPitch = Instr2MaxPitch;
-			epsilon = Instr2Epsilon;
-		}
 	}
 
 

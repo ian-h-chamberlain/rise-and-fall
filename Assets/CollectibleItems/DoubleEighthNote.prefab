@@ -27,6 +27,7 @@ GameObject:
   - 136: {fileID: 13610966}
   - 23: {fileID: 2324276}
   - 54: {fileID: 5425300}
+  - 114: {fileID: 11400922}
   m_Layer: 0
   m_Name: Container
   m_TagString: ItemCapsule
@@ -229,6 +230,7 @@ GameObject:
   - 4: {fileID: 410370}
   - 114: {fileID: 11401592}
   - 114: {fileID: 11466484}
+  - 114: {fileID: 11467710}
   m_Layer: 0
   m_Name: DoubleEighthNote
   m_TagString: Untagged
@@ -835,6 +837,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .260373026, y: .35403803, z: .0248414911}
   m_Center: {x: -.160589829, y: .281024605, z: 1.1222437e-07}
+--- !u!114 &11400922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e0063c8b9c7bc4a8eb6f33ec7bed52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  epsilon: .100000001
+  myTargetPitch: 0
+  instrument: {fileID: 8300000, guid: 1bf10df382bae8c468fa04f17c2030bd, type: 3}
+  boom: {fileID: 19862622, guid: 9108ac4ee96e6424198a1e5272a87d5c, type: 2}
+  onFreq: {fileID: 19898372, guid: fee273936294c684d93e5483243881b7, type: 2}
 --- !u!114 &11401592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -859,6 +877,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instrument: 0
   frequency: 130
+--- !u!114 &11467710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5d6991e5d0d4246aca42bbe337a1d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &13610966
 CapsuleCollider:
   m_ObjectHideFlags: 1

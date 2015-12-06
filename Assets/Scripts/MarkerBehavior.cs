@@ -67,14 +67,14 @@ public class MarkerBehavior : MonoBehaviour {
 	}
 
 	void getInstrumentMinMax(){
-		instrumentMax = sc.GetComponent<SoundController> ().maxPitch;
-		instrumentMin = sc.GetComponent<SoundController> ().minPitch;
+		instrumentMax = sc.GetComponent<SoundController> ().current_inst.maxPitch;
+		instrumentMin = sc.GetComponent<SoundController> ().current_inst.minPitch;
 	}
 
 	void mapToInstrumentRange(){
 		float current_pitch = sc.GetComponent<SoundController> ().sound.pitch;
 		float percentage_to_maxPitch = (current_pitch-instrumentMin) / (instrumentMax-instrumentMin);
-		print ("percentage to maxPitch =" + percentage_to_maxPitch + ",instrumentMin="+instrumentMin+",instrumentMax="+instrumentMax);
+		// print ("percentage to maxPitch =" + percentage_to_maxPitch + ",instrumentMin="+instrumentMin+",instrumentMax="+instrumentMax);
 		float a = sliderTop_y * percentage_to_maxPitch;
 		transform.position = new Vector3 (transform.position.x,
 		                                 percentage_to_maxPitch*(sliderTop_y-sliderBottom_y)*5+sliderBottom_y+10,
