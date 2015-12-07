@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class InstContainer : MonoBehaviour {
-	public Instrument inst;
+	public int inst;
 }
 
 [System.Serializable]

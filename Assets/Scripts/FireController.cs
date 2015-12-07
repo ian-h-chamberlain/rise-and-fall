@@ -11,7 +11,7 @@ public class FireController : MonoBehaviour {
 		if (other.gameObject.CompareTag("ItemCapsule")
 		    	&& d != null
 		    	&& Mathf.Abs(d.myTargetPitch - Camera.main.GetComponent<SoundController>().sound.pitch) < d.epsilon
-		    	&& d.instrument == Camera.main.GetComponent<SoundController>().current_sound) {
+		    	&& d.instrument == Camera.main.GetComponent<SoundController>().current_inst.type) {
 
 			other.gameObject.GetComponent<Destructability>().DestructionSequence();
 		}

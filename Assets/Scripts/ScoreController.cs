@@ -36,7 +36,7 @@ public class ScoreController : MonoBehaviour {
 		}
 		o = FindParentWithTag (other.gameObject, "Instrument");
 		if (o != null) {
-			instruments.Add(other.gameObject.GetComponentInParent<InstContainer>().inst.type);
+			instruments.Add(other.gameObject.GetComponentInParent<InstContainer>().inst);
 			currentInst = instruments.Count - 1;
 			Destroy (other.gameObject);
 		}
@@ -49,8 +49,7 @@ public class ScoreController : MonoBehaviour {
 				if (child.gameObject.CompareTag("SoundCone")) {
 					soundCone = Instantiate(soundConePrefab, child.transform.position, child.transform.rotation) as GameObject;
 					soundCone.transform.localScale = child.localScale;
-					soundCone.GetComponent<FireController>().freq.instrument = instruments[currentInst];
-					soundCone.GetComponent<FireController>().freq.soundInstrument = Camera.main.GetComponent<SoundController>().current_sound;
+					soundCone.GetComponent<FireController>().freq.instrument = currentInst;
 					isFiring = true;
 					curTime = 0.0f;
 				}

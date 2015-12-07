@@ -5,7 +5,6 @@ public class Frequency: MonoBehaviour {
 
 	public int instrument;
 	public float frequency;
-	public AudioClip soundInstrument;
 
 	void Start() {
 		// set color according to instrument

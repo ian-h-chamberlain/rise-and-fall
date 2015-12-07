@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SoundController : MonoBehaviour {
 
 	public AudioSource sound;
-	public AudioClip current_sound;
+	AudioClip current_sound;
 	public Image marker;
 	public Image sliderback;
 	bool markerUp = true;
@@ -32,8 +32,10 @@ public class SoundController : MonoBehaviour {
 	void Start () {
 		sound = GetComponent<AudioSource> ();
 		sound.pitch = 1;
-		current_sound = current_inst.sound;
 
+		current_inst = GameObject.FindObjectOfType<ScoreController>().soundInstruments[0];
+
+		current_sound = current_inst.sound;
 		setPitchRelatedVars ();
 		sliderback.color= current_inst.col;
 
@@ -58,7 +60,6 @@ public class SoundController : MonoBehaviour {
 		if (fade_sound_and_jitter) {
 			sound.volume-=0.1f;
 		}
-		
 
 	}
 

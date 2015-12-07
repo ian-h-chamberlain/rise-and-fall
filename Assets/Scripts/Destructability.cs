@@ -7,15 +7,12 @@ public class Destructability : MonoBehaviour {
 	public float epsilon = 0.1f;
 	int NUM_INSTRUMENTS=1;
 	public float myTargetPitch;
-	public int instrumentNum;
-	public AudioClip instrument;//the instrument I need to be destroyed by
+	public int instrument;
 	float minPitch = 0f; //to be determined by the instrument applicable 
 	float maxPitch = 1f; //to this destructible
-	public ParticleSystem boom;
-	public ParticleSystem onFreq;
-	ParticleSystem particles;
-	int particleWaitTime= 0;
-	int waitForMoreParticles = 0;
+	public GameObject boom;
+	public GameObject onFreq;
+	GameObject particles;
 	Color thisColor;
 
 	// Use this for initialization
@@ -24,9 +21,8 @@ public class Destructability : MonoBehaviour {
 
 		main_camera = Camera.main;
 
-		Instrument i = FindObjectOfType<ScoreController> ().soundInstruments [instrumentNum];
+		Instrument i = FindObjectOfType<ScoreController> ().soundInstruments [instrument];
 
-		instrument = i.sound;
 		minPitch = i.minPitch;
 		maxPitch = i.maxPitch;
 		epsilon = i.epsilon;
@@ -68,23 +64,19 @@ public class Destructability : MonoBehaviour {
 
 	void jitterWithoutCollision(){
 		if (Mathf.Abs (main_camera.GetComponent<SoundController> ().sound.pitch - myTargetPitch) < epsilon
-		    && main_camera.GetComponent<SoundController>().sound.isPlaying
-		    && main_camera.GetComponent<SoundController>().current_sound == instrument) {
-			// GetComponentInParent<Jitter>().startJitter();
-			if(particles == null){
-				particles = (ParticleSystem) Instantiate(onFreq, transform.position, Quaternion.identity);
-				particles.startColor = thisColor;
-				particles.GetComponent<rotateAndColor>().col = thisColor;
-				waitForMoreParticles = particleWaitTime;
-			}
-			else{
-				// waitForMoreParticles--;
-			}
+		    	&& main_camera.GetComponent<SoundController>().sound.isPlaying
+		    	&& main_camera.GetComponent<SoundController>().current_inst.type == instrument) {
 
+			if (particles == null){
+				particles = Instantiate(onFreq, transform.position, Quaternion.identity) as GameObject;
+				Debug.Log ("instantiating jitter particles");
+				particles.GetComponent<ParticleSystem>().startColor = thisColor;
+				if (particles.GetComponent<rotateAndColor>() != null)
+					particles.GetComponent<rotateAndColor>().col = thisColor;
+			}
 		}
-		else if (particles != null) {
-			Destroy (particles.gameObject);
-			Debug.Log ("destroying particleSystem " + particles.ToString());
+		else if (particles != null ) {
+			Destroy (particles);
 			particles = null;
 		}
 	}
@@ -93,11 +85,11 @@ public class Destructability : MonoBehaviour {
 		print ("KaBOOM!");
 
 		if (particles != null) {
-			Destroy (particles.gameObject);
+			Destroy (particles);
 		}
 
-		particles = (ParticleSystem) Instantiate (boom, transform.position, Quaternion.identity);
-		particles.startColor = thisColor;
+		GameObject explosion = Instantiate (boom, transform.position, Quaternion.identity) as GameObject;
+		explosion.GetComponent<ParticleSystem>().startColor = thisColor;
 		Destroy (gameObject);
 
 	}
