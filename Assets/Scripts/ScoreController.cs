@@ -37,12 +37,12 @@ public class ScoreController : MonoBehaviour {
 		o = FindParentWithTag (other.gameObject, "Instrument");
 		if (o != null) {
 			instruments.Add(other.gameObject.GetComponentInParent<InstContainer>().inst);
-			currentInst = instruments.Count - 1;
 			Destroy (other.gameObject);
 		}
 	}
 
 	void Update() {
+
 		// activate the firing process if the mouse button is pressed
 		if (Input.GetMouseButtonDown(0) && !isFiring) {
 			foreach (Transform child in transform) { 
@@ -51,6 +51,7 @@ public class ScoreController : MonoBehaviour {
 					soundCone.transform.localScale = child.localScale;
 					soundCone.GetComponent<FireController>().freq.instrument = currentInst;
 					isFiring = true;
+					GetComponent<TrebleCharacter>().AnimateFire();
 					curTime = 0.0f;
 				}
 			}
@@ -74,7 +75,7 @@ public class ScoreController : MonoBehaviour {
 
 		if (isFiring) {
 			// render the cone
-			soundCone.GetComponent<MeshRenderer>().enabled = true;;
+			soundCone.GetComponent<MeshRenderer>().enabled = true;
 			
 			Vector3 scale = soundCone.transform.localScale;
 			// scale the cone over time according to the scale rate
