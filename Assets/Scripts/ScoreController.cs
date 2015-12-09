@@ -60,13 +60,24 @@ public class ScoreController : MonoBehaviour {
 		if (Input.GetKeyDown ("1")) {
 			lastInst = currentInst;
 			currentInst = 0;
-			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[0]);
-			print("instruments.count="+instruments.Count);
+			Camera.main.GetComponent<SoundController> ().switchInstrument (soundInstruments [0]);
+			print ("instruments.count=" + instruments.Count);
 		} else if (Input.GetKeyDown ("2") && instruments.Count >= 2) {
 			lastInst = currentInst;
 			currentInst = 1;
-			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[1]);
-			//print ("switching to "+soundInstruments[1].sound.name);
+			Camera.main.GetComponent<SoundController> ().switchInstrument (soundInstruments [1]);
+		} else if (Input.GetKeyDown ("3") && instruments.Count >= 3) {
+			lastInst = currentInst;
+			currentInst = 2;
+			Camera.main.GetComponent<SoundController> ().switchInstrument (soundInstruments [2]);
+		} else if (Input.GetKeyDown ("4") && instruments.Count >= 4) {
+			lastInst = currentInst;
+			currentInst = 3;
+			Camera.main.GetComponent<SoundController> ().switchInstrument (soundInstruments [3]);
+		} else if (Input.GetKeyDown ("5") && instruments.Count >= 5) {
+			lastInst = currentInst;
+			currentInst = 4;
+			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[4]);
 		} else if (Input.GetKeyDown ("q")) {
 			int tmp = currentInst;
 			currentInst = lastInst;
