@@ -52,7 +52,6 @@ public class RangeEnemy : MonoBehaviour {
 		else{
 			if (wander_target == Vector3.zero){
 				if (wander_waiting <= 0){
-					Debug.Log ("Time to pick a new spot to go to.");
 					wander_target = new Vector3(t.position.x + Random.Range (-20, 20), t.position.y, t.position.z + Random.Range (-20, 20));
 					agent.SetDestination(wander_target);
 					wander_waiting = 1200;

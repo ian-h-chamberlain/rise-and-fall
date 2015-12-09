@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 			Debug.Log ("Stahp hitting me, I was just bullied");
 		}
 		if (health <= 0) {
+			MusicPlayer.gameover = true;
 			Application.LoadLevel("GameOver");
 		}
 	}

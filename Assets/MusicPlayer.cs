@@ -6,6 +6,10 @@ public class MusicPlayer : MonoBehaviour {
 
 	AudioSource musicer;
 
+	public static AudioClip mountainkingclip;
+	public static AudioClip grandolflagclip;
+	public static AudioClip moonlightsonataclip;
+
 	AudioClip A0;
 	AudioClip AS0;
 	AudioClip B0;
@@ -84,11 +88,18 @@ public class MusicPlayer : MonoBehaviour {
 	public static AudioClip[] MoonlightSonata;
 
 	public static AudioClip[] current;
+	public static AudioClip ending;
+
+	public static bool gameover;
 
 	// Use this for initialization
 	void Start () {
 
 		musicer = GetComponent<AudioSource> ();
+
+		mountainkingclip = (AudioClip) Resources.Load ("MountainKing");
+		grandolflagclip = (AudioClip) Resources.Load ("GrandOlFlag");
+		moonlightsonataclip = (AudioClip) Resources.Load ("MoonlightSonata");
 
 		A0 = (AudioClip) Resources.Load ("Notes/A0");
 		AS0 = (AudioClip) Resources.Load ("Notes/A#0");
@@ -180,6 +191,7 @@ public class MusicPlayer : MonoBehaviour {
 											GS3, C3, FS3, GS3, CS3, E3, GS3, CS3, DS3, FS3, C3, D3};
 
 		DontDestroyOnLoad (gameObject);
+		gameover = false;
 
 	}
 
@@ -189,7 +201,14 @@ public class MusicPlayer : MonoBehaviour {
 		progress++;
 		if (progress >= current.Length) {
 			Application.LoadLevel("Ending");
+			PlayEnding ();
 		}
+	}
+
+	public void PlayEnding(){
+		gameover = true;
+		musicer.clip = ending;
+		musicer.Play ();
 	}
 	
 	// Update is called once per frame
@@ -198,6 +217,16 @@ public class MusicPlayer : MonoBehaviour {
 			musicer.clip = current[progress];
 			musicer.Play ();
 			progress++;
+			if (progress >= current.Length) {
+				Application.LoadLevel("Ending");
+				PlayEnding ();
+			}
+		}
+		if (gameover && (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Return))) {
+			current = null;
+			ending = null;
+			Application.LoadLevel("MainMenu");
+			gameover = false;
 		}
 	}
 }

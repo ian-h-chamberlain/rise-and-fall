@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Storyteller : MonoBehaviour {
 
 	public List<GUIText> words;
+	public List<GameObject> slides;
 	int slide;
 	int delay;
 	int timer;
@@ -20,12 +21,24 @@ public class Storyteller : MonoBehaviour {
 	}
 
 	void Reset(){
+		slides [0].SetActive (false);
+		slides [1].SetActive (false);
+		slides [2].SetActive (false);
 		if (slide < 0) {
 			slide = 0;
 		}
 		else if (slide >= words.Count){
 			Application.LoadLevel("Level");
 			return;
+		}
+		if (slide < 3) {
+			slides[0].SetActive(true);
+		}
+		else if (slide < 6){
+			slides[1].SetActive(true);
+		}
+		else{
+			slides[2].SetActive(true);
 		}
 		words_text = words [slide].text;
 		words [slide].text = "";
