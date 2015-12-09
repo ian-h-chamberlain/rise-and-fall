@@ -15,7 +15,6 @@ public class Destructability : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//int instr_num = (int)Random.Range (0, NUM_INSTRUMENTS);
 
 		main_camera = Camera.main;
 
@@ -35,24 +34,6 @@ public class Destructability : MonoBehaviour {
 	void Update () {
 		jitterWithoutCollision ();
 	}
-
-	/*
-	void OnCollisionEnter(Collision collision){
-		for (int i=0; i < collision.contacts.GetLength(0); i++) {
-			if (collision.contacts[i].otherCollider.GetType()==typeof(Camera) // WAVE 
-			    && Mathf.Abs(main_camera.GetComponent<SoundController>().sound.pitch - myTargetPitch)<epsilon){
-				if (Vector3.Distance(collision.contacts[i].otherCollider.GetComponent<Transform>().position,
-				                     this.GetComponent<Transform>().position)<THRESHHOLD_FOR_DESTROY){
-					DestructionSequence();
-				}
-				else{
-					//emit particles
-					GetComponent<Jitter>().jitter();
-				}
-			}
-		}
-	}
-	*/
 
 	void TESTDestructionWithoutCollision(){
 		if (Mathf.Abs (main_camera.GetComponent<SoundController> ().sound.pitch - myTargetPitch) < epsilon) {
