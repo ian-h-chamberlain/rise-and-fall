@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SecondAudio : MonoBehaviour {
-	ArrayList divs = new ArrayList();
+	ArrayList divs; // = new ArrayList();
 	SoundController sc;
 	AudioClip instrument;
 	float current_min;
@@ -17,15 +17,19 @@ public class SecondAudio : MonoBehaviour {
 	 * 		In SoundController.PitchSwitch(), add [reference to this code].fadeSound() after
 	 * 		StartCoroutine("WaitForSeconds")
 	 * */
-	
-	// Use this for initialization
-	void Start () {
-		sc = Camera.main.GetComponent<SoundController> ();
 
+	void Awake() {
+		divs = new ArrayList();
+		
 		for (int i = 0; i<8; i++) {
 			float d = 0.0f;
 			divs.Add (d);
 		}
+	}
+
+	// Use this for initialization
+	void Start () {
+		sc = Camera.main.GetComponent<SoundController> ();
 	}
 	
 	// Update is called once per frame
@@ -45,6 +49,7 @@ public class SecondAudio : MonoBehaviour {
 	public void SetBrackets(float min, float max, AudioClip ins){
 		//called when a new instrument is chosen
 		for (int i = 0; i<8; i++) {
+			Debug.Log ("divs is " + divs.Count);
 			divs[i] = (float)(max-min)*((float)i/8)+min;
 
 		}
