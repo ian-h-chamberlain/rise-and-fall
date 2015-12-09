@@ -21,6 +21,7 @@ public class FireController : MonoBehaviour {
 		GameObject notes = GameObject.Find ("NoteAudioSource");
 		AudioSource my_audio = GetComponent<AudioSource> ();
 		my_audio.clip = notes.GetComponent<AudioSource> ().clip;
+		my_audio.pitch = notes.GetComponent<AudioSource>().pitch;
 		my_audio.Play ();
 	}
 }
