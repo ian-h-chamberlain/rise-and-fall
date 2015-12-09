@@ -17,7 +17,7 @@ public class EnemyProjectile : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		if (other.name == "Player") {
+		if (other.CompareTag("Player")) {
 			player.Damage();
 			Destroy(gameObject);
 		}
