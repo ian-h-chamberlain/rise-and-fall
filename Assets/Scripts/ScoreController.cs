@@ -62,12 +62,34 @@ public class ScoreController : MonoBehaviour {
 			lastInst = currentInst;
 			currentInst = 0;
 			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[0]);
-			print("instruments.count="+instruments.Count);
 		} else if (Input.GetKeyDown ("2") && instruments.Count >= 2) {
 			lastInst = currentInst;
 			currentInst = 1;
 			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[1]);
-			//print ("switching to "+soundInstruments[1].sound.name);
+		} else if (Input.GetKeyDown ("3") && instruments.Count >= 3) {
+			lastInst = currentInst;
+			currentInst = 1;
+			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[2]);
+		} else if (Input.GetKeyDown ("4") && instruments.Count >= 4) {
+			lastInst = currentInst;
+			currentInst = 1;
+			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[3]);
+		} else if (Input.GetKeyDown ("5") && instruments.Count >= 5) {
+			lastInst = currentInst;
+			currentInst = 1;
+			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[4]);
+		} else if (Input.mouseScrollDelta.y > 0) {
+			if (currentInst + 1 < instruments.Count) {
+				lastInst = currentInst;
+				currentInst++;
+				Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[currentInst]);
+			}
+		} else if (Input.mouseScrollDelta.y < 0) {
+			if (currentInst - 1 >= 0) {
+				lastInst = currentInst;
+				currentInst--;
+				Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[currentInst]);
+			}
 		} else if (Input.GetKeyDown ("q")) {
 			int tmp = currentInst;
 			currentInst = lastInst;

@@ -49,15 +49,11 @@ public class SecondAudio : MonoBehaviour {
 	public void SetBrackets(float min, float max, AudioClip ins){
 		//called when a new instrument is chosen
 		for (int i = 0; i<8; i++) {
-			Debug.Log ("divs is " + divs.Count);
 			divs[i] = (float)(max-min)*((float)i/8)+min;
 
 		}
 		instrument = ins;
 		GetComponent<AudioSource> ().clip = instrument;
-		print ("Max" + max + ",Min" + min);
-		for (int x=0; x<divs.Count; x++)
-			print (divs [x]);
 
 		current_min = min;
 		current_max = max;
