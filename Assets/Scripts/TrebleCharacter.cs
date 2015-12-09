@@ -29,7 +29,11 @@ public class TrebleCharacter : ThirdPersonCharacter {
 
 	void OnAnimatorMove() {
 
-		transform.position += transform.forward * m_ForwardAmount * m_MoveSpeedMultiplier * Time.deltaTime;
+		Vector3 v = Vector3.Normalize(transform.forward) * m_ForwardAmount * m_MoveSpeedMultiplier / Time.deltaTime;
+
+		v.y = m_Rigidbody.velocity.y;
+
+		m_Rigidbody.velocity = v;
 
 	}
 

@@ -35,7 +35,7 @@ public class ScoreController : MonoBehaviour {
 			Destroy (o);
 		}
 		o = FindParentWithTag (other.gameObject, "Instrument");
-		if (o != null) {
+		if (o != null && other.gameObject.GetComponentInParent<InstContainer>() != null) {
 			instruments.Add(other.gameObject.GetComponentInParent<InstContainer>().inst);
 			currentInst = instruments.Count - 1;
 			Destroy (other.gameObject);
