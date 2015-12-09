@@ -27,7 +27,7 @@ public class TrebleCharacter : ThirdPersonCharacter {
 		m_Animator.SetTrigger("Fire");
 	}
 
-	void OnAnimatorMove() {
+	new void OnAnimatorMove() {
 
 		Vector3 v = Vector3.Normalize(transform.forward) * m_ForwardAmount * m_MoveSpeedMultiplier / Time.deltaTime;
 

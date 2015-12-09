@@ -3,9 +3,7 @@ using System.Collections;
 
 public class Destructability : MonoBehaviour {
 	Camera main_camera;
-	int THRESHHOLD_FOR_DESTROY = 10;
 	public float epsilon = 0.1f;
-	int NUM_INSTRUMENTS=1;
 	public float myTargetPitch;
 	public int instrument;
 	float minPitch = 0f; //to be determined by the instrument applicable 

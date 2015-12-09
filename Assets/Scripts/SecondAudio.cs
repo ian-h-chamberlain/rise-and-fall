@@ -6,7 +6,6 @@ public class SecondAudio : MonoBehaviour {
 	SoundController sc;
 	AudioClip instrument;
 	float current_min;
-	float current_max;
 	bool fade_sound;
 
 	/*
@@ -56,7 +55,6 @@ public class SecondAudio : MonoBehaviour {
 		GetComponent<AudioSource> ().clip = instrument;
 
 		current_min = min;
-		current_max = max;
 	}
 
 	public void playNote(){

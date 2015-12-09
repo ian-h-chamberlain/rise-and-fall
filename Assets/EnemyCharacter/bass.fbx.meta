@@ -1,0 +1,145 @@
+fileFormatVersion: 2
+guid: 40b3ea97dc7b340e5a7b4975d7fb976d
+timeCreated: 1449626127
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bassRIG:GEO
+    100004: bassRIG:group1
+    100006: bassRIG:MASTER
+    100008: bassRIG:pasted__joint1
+    100010: bassRIG:pasted__joint10
+    100012: bassRIG:pasted__joint12
+    100014: bassRIG:pasted__joint5
+    100016: bassRIG:pasted__joint6
+    100018: bassRIG:pasted__joint6 1
+    100020: bassRIG:pasted__joint7
+    100022: bassRIG:pasted__joint7 1
+    100024: bassRIG:pasted__joint8
+    100026: bassRIG:pasted__l_arm
+    100028: bassRIG:pasted__neck
+    100030: bassRIG:pasted__nurbsCircle1
+    100032: bassRIG:pasted__nurbsCircle2
+    100034: bassRIG:pasted__nurbsCircle3
+    100036: bassRIG:pasted__nurbsCircle4
+    100038: bassRIG:pasted__nurbsCircle5
+    100040: bassRIG:pasted__nurbsCircle6
+    100042: bassRIG:pasted__r_arm
+    100044: bassRIG:pasted__shoulders
+    100046: bassRIG:pasted__waist
+    100048: bassRIG:polySurface1
+    100050: bassRIG:polySurface2
+    100052: bassRIG:polySurface3
+    100054: bassRIG:polySurface4
+    100056: bassRIG:polySurface5
+    100058: bassRIG:polySurface6
+    400000: //RootNode
+    400002: bassRIG:GEO
+    400004: bassRIG:group1
+    400006: bassRIG:MASTER
+    400008: bassRIG:pasted__joint1
+    400010: bassRIG:pasted__joint10
+    400012: bassRIG:pasted__joint12
+    400014: bassRIG:pasted__joint5
+    400016: bassRIG:pasted__joint6
+    400018: bassRIG:pasted__joint6 1
+    400020: bassRIG:pasted__joint7
+    400022: bassRIG:pasted__joint7 1
+    400024: bassRIG:pasted__joint8
+    400026: bassRIG:pasted__l_arm
+    400028: bassRIG:pasted__neck
+    400030: bassRIG:pasted__nurbsCircle1
+    400032: bassRIG:pasted__nurbsCircle2
+    400034: bassRIG:pasted__nurbsCircle3
+    400036: bassRIG:pasted__nurbsCircle4
+    400038: bassRIG:pasted__nurbsCircle5
+    400040: bassRIG:pasted__nurbsCircle6
+    400042: bassRIG:pasted__r_arm
+    400044: bassRIG:pasted__shoulders
+    400046: bassRIG:pasted__waist
+    400048: bassRIG:polySurface1
+    400050: bassRIG:polySurface2
+    400052: bassRIG:polySurface3
+    400054: bassRIG:polySurface4
+    400056: bassRIG:polySurface5
+    400058: bassRIG:polySurface6
+    4300000: bassRIG:polySurface1
+    4300002: bassRIG:polySurface2
+    4300004: bassRIG:polySurface3
+    4300006: bassRIG:polySurface4
+    4300008: bassRIG:polySurface5
+    4300010: bassRIG:polySurface6
+    7400000: IDLE
+    9500000: //RootNode
+    13700000: bassRIG:polySurface1
+    13700002: bassRIG:polySurface2
+    13700004: bassRIG:polySurface3
+    13700006: bassRIG:polySurface4
+    13700008: bassRIG:polySurface5
+    13700010: bassRIG:polySurface6
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 40
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

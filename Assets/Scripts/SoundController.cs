@@ -13,10 +13,6 @@ public class SoundController : MonoBehaviour {
 
 	public Instrument current_inst;
 
-	float targetPitch;
-	
-	bool destroySequence = false;
-	int countdown_to_destruction = 70;
 	public ParticleSystem boom;
 
 	public GameObject targetDestr;
@@ -54,8 +50,6 @@ public class SoundController : MonoBehaviour {
 		if (sliderActive){
 		
 			moveMarker ();
-			
-			checkForTarget ();
 
 		}
 
@@ -110,14 +104,6 @@ public class SoundController : MonoBehaviour {
 		waiting_to_switch_dir--;
 		if (waiting_to_switch_dir < 0)
 			waiting_to_switch_dir = 0;
-	}
-	
-	void checkForTarget(){
-		if (Mathf.Abs (sound.pitch - targetPitch)<current_inst.epsilon) {
-			GetComponent<Jitter>().jitter ();
-			if (Input.GetKeyDown(KeyCode.Space))
-				destroySequence = true;
-		}
 	}
 
 	void PitchSwitch(){
