@@ -29,10 +29,6 @@ public class RangeEnemy : MonoBehaviour {
 	void Update () {
 		float curSpeed = (transform.position - oldPos).magnitude / Time.deltaTime;
 
-		if (curSpeed > 0) {
-			Debug.Log ("rangeenemy pos change: " + (transform.position - oldPos).ToString());
-		}
-
 		oldPos = transform.position;
 		GetComponentInChildren<Animator>().SetFloat("Velocity", curSpeed / agent.speed);
 

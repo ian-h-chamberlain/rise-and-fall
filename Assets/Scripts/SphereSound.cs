@@ -9,23 +9,16 @@ public class SphereSound : MonoBehaviour {
 	public AudioClip mario;
 	public AudioClip flute;
 	public Image marker;
-	bool markerUp = true;
-	int waiting_to_switch_dir = 0;
-
-
+	
 	public float maxPitch = 1.909999f;
 	public float minPitch = 0.9450001f;
 	float targetPitch;
 
-	bool destroySequence = false;
-	int countdown_to_destruction = 70;
 	public ParticleSystem boom;
 	/*capture desired min and max
 	public float A;
 	public float B;
 	*/
-
-	int WAIT_TIME = 50; 
 
 	void Start(){}
 
