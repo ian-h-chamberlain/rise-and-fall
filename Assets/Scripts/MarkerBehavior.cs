@@ -16,9 +16,7 @@ public class MarkerBehavior : MonoBehaviour {
 	void Start () {
 		sliderTop_y = sliderback.transform.position.y + sliderback.GetComponent<RectTransform> ().rect.height / 2;
 		sliderBottom_y = sliderback.transform.position.y - sliderback.GetComponent<RectTransform> ().rect.height / 2;
-
-		print ("sliderTop:" + sliderTop_y);
-		print ("sliderBottom:" + sliderBottom_y);
+	
 	}
 	
 	// Update is called once per frame
@@ -31,7 +29,6 @@ public class MarkerBehavior : MonoBehaviour {
 	}
  
 	void starrt(){
-		print ("starrt runs");
 		go = false;
 		transform.position = new Vector3(sliderback.transform.position.x /*- sliderback.GetComponent<RectTransform>().rect.width / 2*/,
 		                      sliderback.transform.position.y /*- sliderback.GetComponent<RectTransform> ().rect.height / 2*/,

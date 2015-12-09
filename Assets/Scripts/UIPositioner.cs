@@ -16,11 +16,9 @@ public class UIPositioner : MonoBehaviour {
 		transform.position = new Vector3(x_pos, y_pos, 0);
 
 		if (name == "SlideBackBW") {
-			print ("Hi!");
 			//let Marker know we're all set
 			marker.GetComponent<MarkerBehavior> ().go = true;
 		} else {
-			print (name);
 		}
 		
 	}

@@ -19,11 +19,7 @@ public class Player : MonoBehaviour {
 		if (immune_timer <= 0) {
 			health -= 1;
 			immune_timer = immunity_duration;
-			Debug.Log ("Ouchie, you gave me a booboo");
 			GameObject.FindObjectOfType<HealthBehavior>().SetHealth(health);
-		}
-		else{
-			Debug.Log ("Stahp hitting me, I was just bullied");
 		}
 		if (health <= 0) {
 			Application.LoadLevel("Ending");

@@ -48,7 +48,6 @@ public class Destructability : MonoBehaviour {
 
 			if (particles == null){
 				particles = Instantiate(onFreq, transform.position, Quaternion.identity) as GameObject;
-				Debug.Log ("instantiating jitter particles");
 				particles.GetComponent<ParticleSystem>().startColor = thisColor;
 				if (particles.GetComponent<rotateAndColor>() != null)
 					particles.GetComponent<rotateAndColor>().col = thisColor;
@@ -61,7 +60,6 @@ public class Destructability : MonoBehaviour {
 	}
 
 	public void DestructionSequence(){
-		print ("KaBOOM!");
 
 		if (particles != null) {
 			Destroy (particles);
