@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		GetComponentInChildren<Animator>().SetFloat("Velocity", agent.velocity.magnitude / agent.speed);
+
 		if ((target.position - t.position).sqrMagnitude < aggro_range * aggro_range){
 			wander_target = Vector3.zero;
 			wander_waiting = 0;
