@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour {
 	int attack_counter;
 	Vector3 wander_target;
 	int wander_waiting;
+	Vector3 oldPos;
 
 	// Use this for initialization
 	void Start () {
@@ -19,12 +20,20 @@ public class Enemy : MonoBehaviour {
 		t = GetComponent<Transform> ();
 		wander_target = Vector3.zero;
 		wander_waiting = 0;
+		oldPos = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		GetComponentInChildren<Animator>().SetFloat("Velocity", agent.velocity.magnitude / agent.speed);
+		float curSpeed = (transform.position - oldPos).magnitude / Time.deltaTime;
+		
+		if (curSpeed > 0) {
+			Debug.Log ("rangeenemy pos change: " + (transform.position - oldPos).ToString());
+		}
+		
+		oldPos = transform.position;
+		GetComponentInChildren<Animator>().SetFloat("Velocity", curSpeed / agent.speed);
 
 		if ((target.position - t.position).sqrMagnitude < aggro_range * aggro_range){
 			wander_target = Vector3.zero;
