@@ -89,8 +89,7 @@ public class MusicPlayer : MonoBehaviour {
 
 	public static AudioClip[] current;
 	public static AudioClip ending;
-
-	public static bool gameover;
+	
 
 	// Use this for initialization
 	void Start () {
@@ -191,7 +190,6 @@ public class MusicPlayer : MonoBehaviour {
 											GS3, C3, FS3, GS3, CS3, E3, GS3, CS3, DS3, FS3, C3, D3};
 
 		DontDestroyOnLoad (gameObject);
-		gameover = false;
 
 	}
 
@@ -200,7 +198,7 @@ public class MusicPlayer : MonoBehaviour {
 		musicer.Play ();
 		progress++;
 		if (progress >= current.Length) {
-			Application.LoadLevel("Ending");
+			Application.LoadLevel("GameOver");
 			PlayEnding ();
 		}
 	}
@@ -211,7 +209,6 @@ public class MusicPlayer : MonoBehaviour {
 	}
 
 	public void PlayEnding(){
-		gameover = true;
 		musicer.clip = ending;
 		musicer.Play ();
 	}
@@ -223,15 +220,9 @@ public class MusicPlayer : MonoBehaviour {
 			musicer.Play ();
 			progress++;
 			if (progress >= current.Length) {
-				Application.LoadLevel("Ending");
+				Application.LoadLevel("GameOver");
 				PlayEnding ();
 			}
-		}
-		if (gameover && (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Return))) {
-			current = null;
-			ending = null;
-			Application.LoadLevel("MainMenu");
-			gameover = false;
 		}
 	}
 }
