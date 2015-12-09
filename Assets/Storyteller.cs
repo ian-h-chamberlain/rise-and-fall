@@ -24,7 +24,8 @@ public class Storyteller : MonoBehaviour {
 			slide = 0;
 		}
 		else if (slide >= words.Count){
-			slide = words.Count - 1;
+			Application.LoadLevel("Level");
+			return;
 		}
 		words_text = words [slide].text;
 		words [slide].text = "";
@@ -46,13 +47,13 @@ public class Storyteller : MonoBehaviour {
 			if (reader >= words_text.Length){
 				reading = false;
 			}
-			if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(KeyCode.Backspace)){
+			if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Return)){
 				reading = false;
 				words[slide].text = words_text;
 			}
 		}
 		else{
-			if (Input.GetKeyDown (KeyCode.Space)){
+			if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)){
 				words[slide].enabled = false;
 				slide += 1;
 				Reset();
