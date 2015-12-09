@@ -13,9 +13,11 @@ public class MainMenu : MonoBehaviour {
 	public GUIText mountainking;
 	public GUIText grandolflag;
 	public GUIText moonlight;
+	public GUIText entryofthegladiators;
 	public GameObject song1;
 	public GameObject song2;
 	public GameObject song3;
+	public GameObject song4;
 
 	// Use this for initialization
 	void Start () {
@@ -48,15 +50,18 @@ public class MainMenu : MonoBehaviour {
 		else if (position == 3){
 			song3.SetActive(false);
 		}
+		else if (position == 4){
+			song4.SetActive(false);
+		}
 		if (dir == 'u') {
 			position -= 1;
 			if (position == 0){
-				position = 3;
+				position = 4;
 			}
 		}
 		else{
 			position += 1;
-			if (position == 4){
+			if (position == 5){
 				position = 1;
 			}
 		}
@@ -68,6 +73,9 @@ public class MainMenu : MonoBehaviour {
 		}
 		else if (position == 3){
 			song3.SetActive(true);
+		}
+		else if (position == 4){
+			song4.SetActive(true);
 		}
 	}
 
@@ -82,6 +90,7 @@ public class MainMenu : MonoBehaviour {
 			mountainking.enabled = true;
 			grandolflag.enabled = true;
 			moonlight.enabled = true;
+			entryofthegladiators.enabled = true;
 			song1.SetActive(true);
 		}
 		else{
@@ -93,9 +102,11 @@ public class MainMenu : MonoBehaviour {
 			mountainking.enabled = false;
 			grandolflag.enabled = false;
 			moonlight.enabled = false;
+			entryofthegladiators.enabled = false;
 			song1.SetActive(false);
 			song2.SetActive(false);
 			song3.SetActive(false);
+			song4.SetActive(false);
 		}
 	}
 	
@@ -131,6 +142,10 @@ public class MainMenu : MonoBehaviour {
 				else if (position == 3){
 					MusicPlayer.current = MusicPlayer.MoonlightSonata;
 					MusicPlayer.ending = MusicPlayer.moonlightsonataclip;
+				}
+				else if (position == 4){
+					MusicPlayer.current = MusicPlayer.EntryGladiator;
+					MusicPlayer.ending = MusicPlayer.entrygladiatorclip;
 				}
 				Application.LoadLevel("Introduction");
 			}
