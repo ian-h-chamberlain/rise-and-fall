@@ -9,6 +9,7 @@ public class MusicPlayer : MonoBehaviour {
 	public static AudioClip mountainkingclip;
 	public static AudioClip grandolflagclip;
 	public static AudioClip moonlightsonataclip;
+	public static AudioClip entrygladiatorclip;
 
 	AudioClip A0;
 	AudioClip AS0;
@@ -86,9 +87,12 @@ public class MusicPlayer : MonoBehaviour {
 	public static AudioClip[] MountainKing;
 	public static AudioClip[] GrandOlFlag;
 	public static AudioClip[] MoonlightSonata;
+	public static AudioClip[] EntryGladiator;
 
 	public static AudioClip[] current;
 	public static AudioClip ending;
+
+	public static int win;
 	
 
 	// Use this for initialization
@@ -99,6 +103,7 @@ public class MusicPlayer : MonoBehaviour {
 		mountainkingclip = (AudioClip) Resources.Load ("MountainKing");
 		grandolflagclip = (AudioClip) Resources.Load ("GrandOlFlag");
 		moonlightsonataclip = (AudioClip) Resources.Load ("MoonlightSonata");
+		entrygladiatorclip = (AudioClip)Resources.Load ("EntryOfTheGladiators");
 
 		A0 = (AudioClip) Resources.Load ("Notes/A0");
 		AS0 = (AudioClip) Resources.Load ("Notes/A#0");
@@ -189,6 +194,11 @@ public class MusicPlayer : MonoBehaviour {
 											A2, CS3, E3, A2, CS3, E3, A2, D3, FS3, A2, D3, FS3,
 											GS3, C3, FS3, GS3, CS3, E3, GS3, CS3, DS3, FS3, C3, D3};
 
+		EntryGladiator = new AudioClip[44] {C5, B4, AS4, B4, AS4, A4, GS4, G4, FS4, G4,
+											A4, GS4, G4, GS4, G4, FS4, F4, E4, DS4, E4,
+											G4, F4, F4, CS4, D4, G4, F4, F4, CS4, D4,
+											B3, C4, CS4, D4, DS4, E4, F4, FS4, G4, GS4, A4, B4, A4, G4};
+
 		DontDestroyOnLoad (gameObject);
 
 	}
@@ -198,8 +208,7 @@ public class MusicPlayer : MonoBehaviour {
 		musicer.Play ();
 		progress++;
 		if (progress >= current.Length) {
-			Application.LoadLevel("GameOver");
-			PlayEnding ();
+			win = 60;
 		}
 
 		GameObject.FindObjectOfType<ProgressBehavior>().setProgress(progress * 1.0f / current.Length * 1.0f);
@@ -217,13 +226,20 @@ public class MusicPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (win > 0) {
+			win -= 1;
+			if (win == 0){
+				Application.LoadLevel("GameOver");
+				PlayEnding ();
+			}
+			return;
+		}
 		if (Input.GetKeyDown (KeyCode.M)){
 			musicer.clip = current[progress];
 			musicer.Play ();
 			progress++;
 			if (progress >= current.Length) {
-				Application.LoadLevel("GameOver");
-				PlayEnding ();
+				win = 60;
 			}
 		}
 	}
