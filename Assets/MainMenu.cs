@@ -126,6 +126,15 @@ public class MainMenu : MonoBehaviour {
 				}
 			}
 			else{
+				if (position == 1){
+					MusicPlayer.current = MusicPlayer.MountainKing;
+				}
+				else if (position == 2){
+					MusicPlayer.current = MusicPlayer.GrandOlFlag;
+				}
+				else if (position == 3){
+					MusicPlayer.current = MusicPlayer.MoonlightSonata;
+				}
 				Application.LoadLevel("Introduction");
 			}
 		}

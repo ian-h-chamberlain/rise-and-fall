@@ -23,17 +23,22 @@ public class ScoreController : MonoBehaviour {
 	private List<int> instruments;
 	public List<Instrument> soundInstruments;
 
+	MusicPlayer sounder;
+
+
 	public GameObject uiInstrumentPicture;
 
 	void Start() {
 		instruments = new List<int>();
 		instruments.Add (0);
+		sounder = FindObjectOfType<MusicPlayer> ();
 	}
 
 	void OnTriggerEnter(Collider other) {
 		GameObject o = FindParentWithTag (other.gameObject, "Item");
 		if (o != null) {
 			completion++;
+			sounder.Play();
 			Debug.Log ("completion: " + completion.ToString() + "/" + notesNeeded.ToString());
 			Destroy (o);
 		}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class MusicPlayer : MonoBehaviour {
 
-	AudioSource audio;
+	AudioSource musicer;
 
 	AudioClip A0;
 	AudioClip AS0;
@@ -79,14 +79,16 @@ public class MusicPlayer : MonoBehaviour {
 
 	int progress;
 
-	AudioClip[] MountainKing;
-	AudioClip[] GrandOlFlag;
-	AudioClip[] MoonlightSonata;
+	public static AudioClip[] MountainKing;
+	public static AudioClip[] GrandOlFlag;
+	public static AudioClip[] MoonlightSonata;
+
+	public static AudioClip[] current;
 
 	// Use this for initialization
 	void Start () {
 
-		audio = GetComponent<AudioSource> ();
+		musicer = GetComponent<AudioSource> ();
 
 		A0 = (AudioClip) Resources.Load ("Notes/A0");
 		AS0 = (AudioClip) Resources.Load ("Notes/A#0");
@@ -177,13 +179,24 @@ public class MusicPlayer : MonoBehaviour {
 											A2, CS3, E3, A2, CS3, E3, A2, D3, FS3, A2, D3, FS3,
 											GS3, C3, FS3, GS3, CS3, E3, GS3, CS3, DS3, FS3, C3, D3};
 
+		DontDestroyOnLoad (gameObject);
+
+	}
+
+	public void Play(){
+		musicer.clip = current [progress];
+		musicer.Play ();
+		progress++;
+		if (progress >= current.Length) {
+			Application.LoadLevel("Ending");
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space)){
-			audio.clip = MoonlightSonata[progress];
-			audio.Play ();
+		if (Input.GetKeyDown (KeyCode.M)){
+			musicer.clip = current[progress];
+			musicer.Play ();
 			progress++;
 		}
 	}
