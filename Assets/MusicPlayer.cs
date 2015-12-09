@@ -10,6 +10,7 @@ public class MusicPlayer : MonoBehaviour {
 	public static AudioClip grandolflagclip;
 	public static AudioClip moonlightsonataclip;
 	public static AudioClip entrygladiatorclip;
+	public static AudioClip cottoneyejoeclip;
 
 	AudioClip A0;
 	AudioClip AS0;
@@ -88,6 +89,7 @@ public class MusicPlayer : MonoBehaviour {
 	public static AudioClip[] GrandOlFlag;
 	public static AudioClip[] MoonlightSonata;
 	public static AudioClip[] EntryGladiator;
+	public static AudioClip[] CottonEyeJoe;
 
 	public static AudioClip[] current;
 	public static AudioClip ending;
@@ -103,7 +105,8 @@ public class MusicPlayer : MonoBehaviour {
 		mountainkingclip = (AudioClip) Resources.Load ("MountainKing");
 		grandolflagclip = (AudioClip) Resources.Load ("GrandOlFlag");
 		moonlightsonataclip = (AudioClip) Resources.Load ("MoonlightSonata");
-		entrygladiatorclip = (AudioClip)Resources.Load ("EntryOfTheGladiators");
+		entrygladiatorclip = (AudioClip)Resources.Load ("EntryoftheGladiators");
+		cottoneyejoeclip = (AudioClip)Resources.Load ("CottonEyeJoe");
 
 		A0 = (AudioClip) Resources.Load ("Notes/A0");
 		AS0 = (AudioClip) Resources.Load ("Notes/A#0");
@@ -198,6 +201,8 @@ public class MusicPlayer : MonoBehaviour {
 											A4, GS4, G4, GS4, G4, FS4, F4, E4, DS4, E4,
 											G4, F4, F4, CS4, D4, G4, F4, F4, CS4, D4,
 											B3, C4, CS4, D4, DS4, E4, F4, FS4, G4, GS4, A4, B4, A4, G4};
+
+		CottonEyeJoe = new AudioClip[] {};
 
 		DontDestroyOnLoad (gameObject);
 
