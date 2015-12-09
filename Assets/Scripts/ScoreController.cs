@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour {
 
@@ -21,6 +22,8 @@ public class ScoreController : MonoBehaviour {
 	private int lastInst = 0;
 	private List<int> instruments;
 	public List<Instrument> soundInstruments;
+
+	public GameObject uiInstrumentPicture;
 
 	void Start() {
 		instruments = new List<int>();
@@ -61,28 +64,33 @@ public class ScoreController : MonoBehaviour {
 			lastInst = currentInst;
 			currentInst = 0;
 			Camera.main.GetComponent<SoundController> ().switchInstrument (soundInstruments [0]);
-			print ("instruments.count=" + instruments.Count);
+			uiInstrumentPicture.GetComponent<PickInstrumentForUI>().SetInstrument(0);
 		} else if (Input.GetKeyDown ("2") && instruments.Count >= 2) {
 			lastInst = currentInst;
 			currentInst = 1;
 			Camera.main.GetComponent<SoundController> ().switchInstrument (soundInstruments [1]);
+			uiInstrumentPicture.GetComponent<PickInstrumentForUI>().SetInstrument(1);
 		} else if (Input.GetKeyDown ("3") && instruments.Count >= 3) {
 			lastInst = currentInst;
 			currentInst = 2;
 			Camera.main.GetComponent<SoundController> ().switchInstrument (soundInstruments [2]);
+			uiInstrumentPicture.GetComponent<PickInstrumentForUI>().SetInstrument(2);
 		} else if (Input.GetKeyDown ("4") && instruments.Count >= 4) {
 			lastInst = currentInst;
 			currentInst = 3;
 			Camera.main.GetComponent<SoundController> ().switchInstrument (soundInstruments [3]);
+			uiInstrumentPicture.GetComponent<PickInstrumentForUI>().SetInstrument(3);
 		} else if (Input.GetKeyDown ("5") && instruments.Count >= 5) {
 			lastInst = currentInst;
 			currentInst = 4;
 			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[4]);
+			uiInstrumentPicture.GetComponent<PickInstrumentForUI>().SetInstrument(4);
 		} else if (Input.GetKeyDown ("q")) {
 			int tmp = currentInst;
 			currentInst = lastInst;
 			lastInst = tmp;
 			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[currentInst]);
+			uiInstrumentPicture.GetComponent<PickInstrumentForUI>().SetInstrument(currentInst);
 		}
 
 		if (isFiring) {
