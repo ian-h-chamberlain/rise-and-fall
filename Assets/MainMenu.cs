@@ -14,10 +14,12 @@ public class MainMenu : MonoBehaviour {
 	public GUIText grandolflag;
 	public GUIText moonlight;
 	public GUIText entryofthegladiators;
+	public GUIText cottoneyejoe;
 	public GameObject song1;
 	public GameObject song2;
 	public GameObject song3;
 	public GameObject song4;
+	public GameObject song5;
 
 	// Use this for initialization
 	void Start () {
@@ -53,15 +55,18 @@ public class MainMenu : MonoBehaviour {
 		else if (position == 4){
 			song4.SetActive(false);
 		}
+		else if (position == 5){
+			song5.SetActive(false);
+		}
 		if (dir == 'u') {
 			position -= 1;
 			if (position == 0){
-				position = 4;
+				position = 5;
 			}
 		}
 		else{
 			position += 1;
-			if (position == 5){
+			if (position == 6){
 				position = 1;
 			}
 		}
@@ -77,6 +82,9 @@ public class MainMenu : MonoBehaviour {
 		else if (position == 4){
 			song4.SetActive(true);
 		}
+		else if (position == 5){
+			song5.SetActive(true);
+		}
 	}
 
 	void SwitchehSlide(){
@@ -91,6 +99,7 @@ public class MainMenu : MonoBehaviour {
 			grandolflag.enabled = true;
 			moonlight.enabled = true;
 			entryofthegladiators.enabled = true;
+			cottoneyejoe.enabled = true;
 			song1.SetActive(true);
 		}
 		else{
@@ -103,10 +112,12 @@ public class MainMenu : MonoBehaviour {
 			grandolflag.enabled = false;
 			moonlight.enabled = false;
 			entryofthegladiators.enabled = false;
+			cottoneyejoe.enabled = false;
 			song1.SetActive(false);
 			song2.SetActive(false);
 			song3.SetActive(false);
 			song4.SetActive(false);
+			song5.SetActive(false);
 		}
 	}
 	
@@ -146,6 +157,10 @@ public class MainMenu : MonoBehaviour {
 				else if (position == 4){
 					MusicPlayer.current = MusicPlayer.EntryGladiator;
 					MusicPlayer.ending = MusicPlayer.entrygladiatorclip;
+				}
+				else if (position == 5){
+					MusicPlayer.current = MusicPlayer.CottonEyeJoe;
+					MusicPlayer.ending = MusicPlayer.cottoneyejoeclip;
 				}
 				Application.LoadLevel("Introduction");
 			}

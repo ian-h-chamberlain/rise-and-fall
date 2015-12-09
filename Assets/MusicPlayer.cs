@@ -202,7 +202,10 @@ public class MusicPlayer : MonoBehaviour {
 											G4, F4, F4, CS4, D4, G4, F4, F4, CS4, D4,
 											B3, C4, CS4, D4, DS4, E4, F4, FS4, G4, GS4, A4, B4, A4, G4};
 
-		CottonEyeJoe = new AudioClip[] {};
+		CottonEyeJoe = new AudioClip[38] {CS4, E4, E4, CS4, E4, CS4, E4, CS4, CS4, CS4, 
+										E4, CS4, B3, A3, A3, A3, A3, A3, FS3, 
+										D3, D3, FS3, A3, FS3, A3, A3, A3, D4,
+										E4, CS4, CS4, B3, A3, CS4, A3, A3, FS3, E3};
 
 		DontDestroyOnLoad (gameObject);
 
@@ -228,9 +231,13 @@ public class MusicPlayer : MonoBehaviour {
 		musicer.clip = ending;
 		musicer.Play ();
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
+		if (Application.loadedLevelName == "MainMenu") {
+			musicer.Stop ();
+		}
 		if (win > 0) {
 			win -= 1;
 			if (win == 0){
