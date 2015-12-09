@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class MusicPlayer : MonoBehaviour {
 
 	AudioSource musicer;
-
+	
 	public static AudioClip mountainkingclip;
 	public static AudioClip grandolflagclip;
 	public static AudioClip moonlightsonataclip;
@@ -246,6 +246,7 @@ public class MusicPlayer : MonoBehaviour {
 			if (progress >= current.Length) {
 				win = 60;
 			}
+			GameObject.FindObjectOfType<ProgressBehavior>().setProgress(progress * 1.0f / current.Length * 1.0f);
 		}
 	}
 }
