@@ -42,11 +42,21 @@ public class ScoreController : MonoBehaviour {
 			Debug.Log ("completion: " + completion.ToString() + "/" + notesNeeded.ToString());
 			Destroy (o);
 		}
+
 		o = FindParentWithTag (other.gameObject, "Instrument");
-		if (o != null && other.gameObject.GetComponentInParent<InstContainer>() != null) {
-			instruments.Add(other.gameObject.GetComponentInParent<InstContainer>().inst);
-			currentInst = instruments.Count - 1;
-			Destroy (other.gameObject);
+		if (o != null) {
+			sounder.Play (soundInstruments [other.gameObject.GetComponentInParent<InstContainer> ().inst].sound);
+
+			Debug.Log ("played sound for inst " + other.gameObject.GetComponentInParent<InstContainer> ().inst);
+
+			if (other.CompareTag("Instrument")) {
+
+				instruments.Add (other.gameObject.GetComponentInParent<InstContainer> ().inst);
+				Destroy (other.gameObject);
+			}
+			else {
+				Destroy(other.gameObject);
+			}
 		}
 	}
 

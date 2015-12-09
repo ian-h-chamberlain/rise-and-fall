@@ -7,7 +7,7 @@ public class Frequency: MonoBehaviour {
 	public float frequency;
 
 	void Awake() {
-		if (gameObject.CompareTag("Item")) {
+		if (gameObject.CompareTag("Item") || gameObject.CompareTag("Joke")) {
 			instrument = Random.Range (0, 3);
 			GetComponentInChildren<Destructability>().instrument = instrument;
 		}

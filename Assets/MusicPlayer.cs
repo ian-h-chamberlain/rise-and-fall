@@ -191,6 +191,11 @@ public class MusicPlayer : MonoBehaviour {
 			Application.LoadLevel("Ending");
 		}
 	}
+
+	public void Play(AudioClip clip) {
+		musicer.clip = clip;
+		musicer.Play ();
+	}
 	
 	// Update is called once per frame
 	void Update () {
