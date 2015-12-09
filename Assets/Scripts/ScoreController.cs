@@ -39,7 +39,6 @@ public class ScoreController : MonoBehaviour {
 		if (o != null) {
 			completion++;
 			sounder.Play();
-			Debug.Log ("completion: " + completion.ToString() + "/" + notesNeeded.ToString());
 			Destroy (o);
 		}
 

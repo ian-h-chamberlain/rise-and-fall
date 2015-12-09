@@ -201,6 +201,8 @@ public class MusicPlayer : MonoBehaviour {
 			Application.LoadLevel("GameOver");
 			PlayEnding ();
 		}
+
+		GameObject.FindObjectOfType<ProgressBehavior>().setProgress(progress * 1.0f / current.Length * 1.0f);
 	}
 
 	public void Play(AudioClip clip) {

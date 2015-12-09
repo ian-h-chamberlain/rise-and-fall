@@ -30,7 +30,12 @@ public class ProgressBehavior : MonoBehaviour {
 			setProgress(1.0f);
 		}
 		*/
-		
+
+		Vector3 scale = GetComponent<RectTransform> ().localScale;
+
+		GetComponent<RectTransform> ().localScale  = new Vector3(full_scale * actual_progress, scale.y, scale.z);
+
+		/*
 		if (GetComponent<RectTransform> ().localScale.x < full_scale * (actual_progress)) {
 			GetComponent<RectTransform> ().localScale = new Vector3 (GetComponent<RectTransform> ().localScale.x + 0.1f,
 			                                                         GetComponent<RectTransform> ().localScale.y,
@@ -40,6 +45,7 @@ public class ProgressBehavior : MonoBehaviour {
 			                                                        GetComponent<RectTransform> ().localScale.y,
 			                                                        GetComponent<RectTransform> ().localScale.z);
 		}
+		*/
 		
 		
 	}
