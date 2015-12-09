@@ -6,6 +6,14 @@ public class Frequency: MonoBehaviour {
 	public int instrument;
 	public float frequency;
 
+	void Awake() {
+		if (gameObject.CompareTag("Item")) {
+			instrument = Random.Range (0, 3);
+			GetComponentInChildren<Destructability>().instrument = instrument;
+		}
+	}
+
+
 	void Start() {
 		ScoreController sc = GameObject.FindObjectOfType<ScoreController>();
 
