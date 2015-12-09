@@ -76,7 +76,7 @@ public class ScoreController : MonoBehaviour {
 
 		if (isFiring) {
 			// render the cone
-			soundCone.GetComponent<MeshRenderer>().enabled = true;;
+			soundCone.GetComponent<MeshRenderer>().enabled = true;
 			
 			Vector3 scale = soundCone.transform.localScale;
 			// scale the cone over time according to the scale rate

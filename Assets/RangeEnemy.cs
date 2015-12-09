@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
-
+public class RangeEnemy : MonoBehaviour {
+	
 	public Transform target;
 	public Player player;
 	public float aggro_range;
@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour {
 	int attack_counter;
 	Vector3 wander_target;
 	int wander_waiting;
-
+	GameObject projectile;
+	
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour {
 		t = GetComponent<Transform> ();
 		wander_target = Vector3.zero;
 		wander_waiting = 0;
+		projectile = (GameObject) Resources.Load ("EnemyProjectile");
 	}
 	
 	// Update is called once per frame
@@ -29,8 +31,10 @@ public class Enemy : MonoBehaviour {
 			agent.SetDestination (target.position);
 			if ((t.position - target.position).sqrMagnitude <= agent.stoppingDistance * agent.stoppingDistance) {
 				attack_counter += 1;
-				if (attack_counter >= 60){
-					player.Damage();
+				if (attack_counter >= 90){
+					GameObject temp = Instantiate(projectile, t.position, t.rotation) as GameObject;
+					temp.transform.Rotate(90f, 0, 0);
+					temp.transform.position += new Vector3(0, 0.3f, 0);
 					attack_counter = 0;
 				}
 			} 
@@ -41,6 +45,7 @@ public class Enemy : MonoBehaviour {
 		else{
 			if (wander_target == Vector3.zero){
 				if (wander_waiting <= 0){
+					Debug.Log ("Time to pick a new spot to go to.");
 					wander_target = new Vector3(t.position.x + Random.Range (-20, 20), t.position.y, t.position.z + Random.Range (-20, 20));
 					agent.SetDestination(wander_target);
 					wander_waiting = 1200;
