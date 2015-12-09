@@ -62,10 +62,12 @@ public class ScoreController : MonoBehaviour {
 			lastInst = currentInst;
 			currentInst = 0;
 			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[0]);
+			print("instruments.count="+instruments.Count);
 		} else if (Input.GetKeyDown ("2") && instruments.Count >= 2) {
 			lastInst = currentInst;
 			currentInst = 1;
 			Camera.main.GetComponent<SoundController>().switchInstrument(soundInstruments[1]);
+			//print ("switching to "+soundInstruments[1].sound.name);
 		} else if (Input.GetKeyDown ("q")) {
 			int tmp = currentInst;
 			currentInst = lastInst;
@@ -75,7 +77,6 @@ public class ScoreController : MonoBehaviour {
 
 		if (isFiring) {
 			// render the cone
-			soundCone.GetComponent<MeshRenderer>().enabled = true;
 			
 			Vector3 scale = soundCone.transform.localScale;
 			// scale the cone over time according to the scale rate

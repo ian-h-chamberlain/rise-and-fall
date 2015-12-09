@@ -23,8 +23,7 @@ public class SoundController : MonoBehaviour {
 	public bool sliderActive = false;
 	bool fade_sound_and_jitter;
 
-	public float A;
-	public float B;
+	public AudioSource secret_2nd_audio;
 
 	int WAIT_TIME = 50;
 
@@ -38,6 +37,9 @@ public class SoundController : MonoBehaviour {
 		current_sound = current_inst.sound;
 		setPitchRelatedVars ();
 		sliderback.color= current_inst.col;
+		secret_2nd_audio.GetComponent<SecondAudio> ().SetBrackets (current_inst.minPitch, 
+		                                                           current_inst.maxPitch, 
+		                                                           current_inst.sound);
 
 	}
 	
@@ -69,6 +71,9 @@ public class SoundController : MonoBehaviour {
 		current_sound = inst.sound;
 		setPitchRelatedVars();
 		sliderback.color = inst.col;
+		secret_2nd_audio.GetComponent<SecondAudio> ().SetBrackets (current_inst.minPitch, 
+		                                                           current_inst.maxPitch, 
+		                                                           current_inst.sound);
 	}
 
 	void setPitchRelatedVars(){
@@ -126,6 +131,7 @@ public class SoundController : MonoBehaviour {
 		else {
 			sliderActive=false;
 			StartCoroutine("WaitThenPauseSound");
+			secret_2nd_audio.GetComponent<SecondAudio>().fadeSound();
 
 		}
 	}
@@ -145,29 +151,3 @@ public class SoundController : MonoBehaviour {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
