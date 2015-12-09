@@ -7,11 +7,9 @@ public class MainMenu : MonoBehaviour {
 	int slide;
 	public GameObject bullet1;
 	public GameObject bullet2;
-	public GUIText mainmenu;
 	public GUIText startgame;
 	public GUIText exitgame;
 
-	public GUIText selectsongs;
 	public GUIText mountainking;
 	public GUIText grandolflag;
 	public GUIText moonlight;
@@ -76,13 +74,11 @@ public class MainMenu : MonoBehaviour {
 	void SwitchehSlide(){
 		if (slide == 1) {
 			position = 1;
-			mainmenu.enabled = false;
 			startgame.enabled = false;
 			exitgame.enabled = false;
 			bullet1.SetActive(false);
 			bullet2.SetActive(false);
 			slide = 2;
-			selectsongs.enabled = true;
 			mountainking.enabled = true;
 			grandolflag.enabled = true;
 			moonlight.enabled = true;
@@ -90,12 +86,10 @@ public class MainMenu : MonoBehaviour {
 		}
 		else{
 			position = 1;
-			mainmenu.enabled = true;
 			startgame.enabled = true;
 			exitgame.enabled = true;
 			bullet1.SetActive(true);
 			slide = 1;
-			selectsongs.enabled = false;
 			mountainking.enabled = false;
 			grandolflag.enabled = false;
 			moonlight.enabled = false;
@@ -128,12 +122,15 @@ public class MainMenu : MonoBehaviour {
 			else{
 				if (position == 1){
 					MusicPlayer.current = MusicPlayer.MountainKing;
+					MusicPlayer.ending = MusicPlayer.mountainkingclip;
 				}
 				else if (position == 2){
 					MusicPlayer.current = MusicPlayer.GrandOlFlag;
+					MusicPlayer.ending = MusicPlayer.grandolflagclip;
 				}
 				else if (position == 3){
 					MusicPlayer.current = MusicPlayer.MoonlightSonata;
+					MusicPlayer.ending = MusicPlayer.moonlightsonataclip;
 				}
 				Application.LoadLevel("Introduction");
 			}
