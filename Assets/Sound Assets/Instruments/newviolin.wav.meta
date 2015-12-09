@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sound Assets/Instruments/newviolin.wav.meta
 guid: 4d930ef3d3123cd47b370343b8a1e8d2
 timeCreated: 1449639006
 licenseType: Free
+=======
+guid: 127d0881ac502954eb43658491d4dc5f
+timeCreated: 1449639967
+licenseType: Pro
+>>>>>>> 347d92f8ad3af55430fee1acc4ce56f426f04c2e:Assets/Sound Assets/Instruments/newviolin.wav.meta
 AudioImporter:
   serializedVersion: 6
   defaultSettings:

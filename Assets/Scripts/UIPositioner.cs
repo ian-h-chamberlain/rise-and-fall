@@ -7,7 +7,7 @@ public class UIPositioner : MonoBehaviour {
 	public float y_offset;
 	public string note = "Offsets are the fraction of the way up and across the screen the object is";
 	public Camera cam;
-	public Image marker;
+	public Image marker =null;
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +15,13 @@ public class UIPositioner : MonoBehaviour {
 		float y_pos = y_offset * Screen.height;
 		transform.position = new Vector3(x_pos, y_pos, 0);
 
-		//let Marker know we're all set
-		marker.GetComponent<MarkerBehavior> ().go = true;
+		if (name == "SlideBackBW") {
+			print ("Hi!");
+			//let Marker know we're all set
+			marker.GetComponent<MarkerBehavior> ().go = true;
+		} else {
+			print (name);
+		}
 		
 	}
 	
