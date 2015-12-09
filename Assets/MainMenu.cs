@@ -15,11 +15,13 @@ public class MainMenu : MonoBehaviour {
 	public GUIText moonlight;
 	public GUIText entryofthegladiators;
 	public GUIText cottoneyejoe;
+	public GUIText carolofthebells;
 	public GameObject song1;
 	public GameObject song2;
 	public GameObject song3;
 	public GameObject song4;
 	public GameObject song5;
+	public GameObject song6;
 
 	// Use this for initialization
 	void Start () {
@@ -58,15 +60,18 @@ public class MainMenu : MonoBehaviour {
 		else if (position == 5){
 			song5.SetActive(false);
 		}
+		else if (position == 6){
+			song6.SetActive(false);
+		}
 		if (dir == 'u') {
 			position -= 1;
 			if (position == 0){
-				position = 5;
+				position = 6;
 			}
 		}
 		else{
 			position += 1;
-			if (position == 6){
+			if (position == 7){
 				position = 1;
 			}
 		}
@@ -85,6 +90,9 @@ public class MainMenu : MonoBehaviour {
 		else if (position == 5){
 			song5.SetActive(true);
 		}
+		else if (position == 6){
+			song6.SetActive(true);
+		}
 	}
 
 	void SwitchehSlide(){
@@ -100,6 +108,7 @@ public class MainMenu : MonoBehaviour {
 			moonlight.enabled = true;
 			entryofthegladiators.enabled = true;
 			cottoneyejoe.enabled = true;
+			carolofthebells.enabled = true;
 			song1.SetActive(true);
 		}
 		else{
@@ -113,11 +122,13 @@ public class MainMenu : MonoBehaviour {
 			moonlight.enabled = false;
 			entryofthegladiators.enabled = false;
 			cottoneyejoe.enabled = false;
+			carolofthebells.enabled = false;
 			song1.SetActive(false);
 			song2.SetActive(false);
 			song3.SetActive(false);
 			song4.SetActive(false);
 			song5.SetActive(false);
+			song6.SetActive(false);
 		}
 	}
 	
@@ -161,6 +172,10 @@ public class MainMenu : MonoBehaviour {
 				else if (position == 5){
 					MusicPlayer.current = MusicPlayer.CottonEyeJoe;
 					MusicPlayer.ending = MusicPlayer.cottoneyejoeclip;
+				}
+				else if (position == 6){
+					MusicPlayer.current = MusicPlayer.CaroloftheBells;
+					MusicPlayer.ending = MusicPlayer.carolofthebellsclip;
 				}
 				Application.LoadLevel("Introduction");
 			}

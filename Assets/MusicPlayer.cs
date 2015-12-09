@@ -11,6 +11,7 @@ public class MusicPlayer : MonoBehaviour {
 	public static AudioClip moonlightsonataclip;
 	public static AudioClip entrygladiatorclip;
 	public static AudioClip cottoneyejoeclip;
+	public static AudioClip carolofthebellsclip;
 
 	AudioClip A0;
 	AudioClip AS0;
@@ -90,6 +91,7 @@ public class MusicPlayer : MonoBehaviour {
 	public static AudioClip[] MoonlightSonata;
 	public static AudioClip[] EntryGladiator;
 	public static AudioClip[] CottonEyeJoe;
+	public static AudioClip[] CaroloftheBells;
 
 	public static AudioClip[] current;
 	public static AudioClip ending;
@@ -107,6 +109,7 @@ public class MusicPlayer : MonoBehaviour {
 		moonlightsonataclip = (AudioClip) Resources.Load ("MoonlightSonata");
 		entrygladiatorclip = (AudioClip)Resources.Load ("EntryoftheGladiators");
 		cottoneyejoeclip = (AudioClip)Resources.Load ("CottonEyeJoe");
+		carolofthebellsclip = (AudioClip)Resources.Load ("CaroloftheBells");
 
 		A0 = (AudioClip) Resources.Load ("Notes/A0");
 		AS0 = (AudioClip) Resources.Load ("Notes/A#0");
@@ -207,6 +210,10 @@ public class MusicPlayer : MonoBehaviour {
 										D3, D3, FS3, A3, FS3, A3, A3, A3, D4,
 										E4, CS4, CS4, B3, A3, CS4, A3, A3, FS3, E3};
 
+		CaroloftheBells = new AudioClip[] {G4, FS4, G4, E4, G4, FS4, G4, E4, G4, FS4, G4, E4, G4, FS4, G4, E4, 
+											G4, FS4, G4, E4, G4, FS4, G4, E4, G4, FS4, G4, E4, G4, FS4, G4, E4, 
+											G4, FS4, G4, E4, G4, FS4, G4, E4, G4, FS4, G4, E4, G4, FS4, G4, E4}; 
+
 		DontDestroyOnLoad (gameObject);
 
 	}
@@ -235,8 +242,9 @@ public class MusicPlayer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Application.loadedLevelName == "MainMenu") {
+		if (Application.loadedLevelName == "MainMenu" && progress != 0) {
 			musicer.Stop ();
+			progress = 0;
 		}
 		if (win > 0) {
 			win -= 1;
